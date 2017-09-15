@@ -1,11 +1,30 @@
 $(function(){
 
 
+	menu();
+
+
 	var $head = $("#head");
 	var direction = 0;
 	var movement = setInterval(function() {});
-	function
+	clearInterval(movement);
+	function menu () {
+		var menuChoice = prompt('What do you want?\nPlay Snake - 1\nSettings - 0\nQuit - No need to press a button, just walk away man');
+		if(menuChoice == 1){
+			playGame();
+		}else if(menuChoice == 2){
+			//settings() not a function yet
+		}else{
+
+		}
+
+
+	}
+
 	function playGame () {
+		
+
+
     	$(document).keydown(function(event){
     		clearInterval(movement);
 	    	if(event.keyCode==38)//up
@@ -36,10 +55,10 @@ $(function(){
 		      	move(direction);
 		      
 		    }
-
+		   
 	  	});
 	}  	
-
+	
 
 		    $("#buttonLeft").click(function(event){
 		    	$head.animate({
@@ -64,7 +83,9 @@ $(function(){
 
 
 	function move(direction) {
+		
 
+		
 		movement = setInterval(function(){ 
 
 			
@@ -84,18 +105,32 @@ $(function(){
 		    else if(direction==39)//right
 		    {
 		      	$head.animate({left: "+=20px"},"fast");
-		    }
+		    } 
+		    
+		    var x = $head.position().top
+			var y = $head.position().left
+			die();
+			console.log(x + ", " + y);
+			function die() {
+				if(x == -20 || x == 600 || y == -20 || y == 400){
+					
+					alert('Wipe yourself, you\'re bleeding!');
+					menu();
+					//playGame();
+				}	
+			}
+			
 
 		}, 500);
 
+		
+	
 	}
 
+	
 
-	function die() {
-		if(){}
-			
 
-	}
+	
 
 
 
