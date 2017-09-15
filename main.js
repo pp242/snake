@@ -4,6 +4,7 @@ $(function(){
 	var $head = $("#head");
 	var direction = 0;
 	var movement = setInterval(function() {});
+	function
 	function playGame () {
     	$(document).keydown(function(event){
     		clearInterval(movement);
@@ -91,9 +92,8 @@ $(function(){
 
 
 	function die() {
-		if($head.top: '-20px' )
-			{ 
-			}
+		if(){}
+			
 
 	}
 
