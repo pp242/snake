@@ -1,11 +1,10 @@
 $(function(){
 
-
 	menu();
-
 
 	var $head = $("#head");
 	var direction = 0;
+	var food;
 	var movement = setInterval(function() {});
 	clearInterval(movement);
 	function menu () {
@@ -15,14 +14,14 @@ $(function(){
 		}else if(menuChoice == 2){
 			//settings() not a function yet
 		}else{
-
+			///quit();
 		}
-
-
 	}
 
 	function playGame () {
-		
+		////local storage
+		////.css -- for no animation
+		/// addd elemenet to head for and delete end 
 
 
     	$(document).keydown(function(event){
@@ -58,8 +57,6 @@ $(function(){
 		   
 	  	});
 	}  	
-	
-
 		    $("#buttonLeft").click(function(event){
 		    	$head.animate({
 		      	"left": "-=20px"
@@ -82,14 +79,37 @@ $(function(){
 		  	});
 
 
+	function snakeBody() {
+      	var length = 4;
+     	snake = [];
+      	for (var i = length-1; i>=0; i--) {
+         	snake.push({x:i, y:0});
+      	}  
+ 	}
+
 	function move(direction) {
-		
 
-		
+		var headX = $head.position().top ;
+		var headY = $head.position().left ;
+		function eat () {
+						
+
+				var $food = $("#food");
+
+				$food = {
+					x: (Math.floor((Math.random() * 29))) * 20,
+					y: (Math.floor((Math.random() * 19))) * 20
+				}
+
+				console.log($food.x + ', ' + $food.y)
+				if($food.x == headX && $food.y == headY){
+
+				}    
+			}
+		eat();
+
 		movement = setInterval(function(){ 
-
-			
-
+		
 	    	if(direction==38)//up
 		    {
 		      	$head.animate({top: "-=20px"},"fast");
@@ -107,37 +127,25 @@ $(function(){
 		      	$head.animate({left: "+=20px"},"fast");
 		    } 
 		    
-		    var x = $head.position().top
-			var y = $head.position().left
+		    var headX = $head.position().top ;
+			var headY = $head.position().left ;
 			die();
-			console.log(x + ", " + y);
+		
+			
 			function die() {
-				if(x == -20 || x == 600 || y == -20 || y == 400){
+				if(headX <= -20 || headX >= 400 || headY <= -20 || headY >= 600){
 					
-					alert('Wipe yourself, you\'re bleeding!');
+					alert('Dead');
 					menu();
 					//playGame();
 				}	
 			}
-			
 
-		}, 500);
+		}, 300);
 
-		
-	
 	}
 
-	
-
-
-	
-
-
-
 });
-
-
-
 
 
 
