@@ -3,12 +3,17 @@ $(function(){
 	menu();
 
 	var $head = $("#head");
-	var direction = 0;
+	var direction = 0;  
 	var food;
+	var body;
+	var snake = [] ;
+	var score = 0;
 	var movement = setInterval(function() {});
 	clearInterval(movement);
+
+
 	function menu () {
-		var menuChoice = prompt('What do you want?\nPlay Snake - 1\nSettings - 0\nQuit - No need to press a button, just walk away man');
+		var menuChoice = prompt('What do you want?\nPlay Snake - 1\nSettings - 2\nQuit - No need to press a button, just walk away man');
 		if(menuChoice == 1){
 			playGame();
 		}else if(menuChoice == 2){
@@ -21,61 +26,53 @@ $(function(){
 	function playGame () {
 		////local storage
 		////.css -- for no animation
-		/// addd elemenet to head for and delete end 
+		/// addd elemenet to head for and delete end
+		//// had a head element and body changed it to just snakebody for ease 
 
 
     	$(document).keydown(function(event){
     		clearInterval(movement);
 	    	if(event.keyCode==38)//up
 		    {
-		      	$head.animate({top: "-=20px"},"fast");
 		      	direction = event.keyCode;
 		     	move(direction);
-		      
-		    }
-		    else if(event.keyCode==40)//down
+		    }else if(event.keyCode==40)//down
 		    {
-		      	$head.animate({top: "+=20px"},"fast");
 		      	direction = event.keyCode;
 		      	move(direction);
-		      		      
-		    }
-		    else if(event.keyCode==37)//left
+		    }else if(event.keyCode==37)//left
 		    {
-		      	$head.animate({left: "-=20px"},"fast");
 		      	direction = event.keyCode;
 		      	move(direction);
-		      
-		    }
-		    else if(event.keyCode==39)//right
+		    }else if(event.keyCode==39)//right
 		    {
-		      	$head.animate({left: "+=20px"},"fast");
 		      	direction = event.keyCode;
 		      	move(direction);
-		      
-		    }
-		   
+		    } 
 	  	});
 	}  	
 		    $("#buttonLeft").click(function(event){
-		    	$head.animate({
-		      	"left": "-=20px"
-		    	},"fast");
+		    	clearInterval(movement);
+		    	direction = 37;
+				move(direction);
 		 	});
+
 		    $("#buttonRight").click(function(event){
-		    	$head.animate({
-		      	"left": "+=20px"
-		    	},"fast");
-		    });
+		    	clearInterval(movement);
+		    	direction = 39;
+				move(direction);
+				});
+
 		  	$("#buttonTop").click(function(event){
-		    	$head.animate({
-		      	top: "-=20px"
-		    	},"fast")
+		  		clearInterval(movement);
+		    	direction = 38;
+		    	move(direction);
 		  	});
+
 		  	$("#buttonBottom").click(function(event){
-		    	$head.animate({
-		    	  top: "+=20px"
-		    	},"fast")
+		  		clearInterval(movement);
+		    	direction = 40;
+		    	move(direction);
 		  	});
 
 
@@ -89,42 +86,21 @@ $(function(){
 
 	function move(direction) {
 
-		var headX = $head.position().top ;
-		var headY = $head.position().left ;
-		function eat () {
-						
-
-				var $food = $("#food");
-
-				$food = {
-					x: (Math.floor((Math.random() * 29))) * 20,
-					y: (Math.floor((Math.random() * 19))) * 20
-				}
-
-				console.log($food.x + ', ' + $food.y)
-				if($food.x == headX && $food.y == headY){
-
-				}    
-			}
-		eat();
 
 		movement = setInterval(function(){ 
 		
 	    	if(direction==38)//up
 		    {
-		      	$head.animate({top: "-=20px"},"fast");
-		    }
-		    else if(direction==40)//down
+		      	$head.css({top: "-=20px"},"fast");
+		    }else if(direction==40)//down
 		    {
-		      	$head.animate({top: "+=20px"},"fast");
-		    }
-		    else if(direction==37)//left
+		      	$head.css({top: "+=20px"},"fast");
+		    }else if(direction==37)//left
 		    {
-		      	$head.animate({left: "-=20px"},"fast");
-		    }
-		    else if(direction==39)//right
+		      	$head.css({left: "-=20px"},"fast");
+		    }else if(direction==39)//right
 		    {
-		      	$head.animate({left: "+=20px"},"fast");
+		      	$head.css({left: "+=20px"},"fast");
 		    } 
 		    
 		    var headX = $head.position().top ;
@@ -136,14 +112,61 @@ $(function(){
 				if(headX <= -20 || headX >= 400 || headY <= -20 || headY >= 600){
 					
 					alert('Dead');
+					$head.css({top: '100px', left: '100px'});
+					clearInterval(movement);
 					menu();
 					//playGame();
 				}	
 			}
+				
 
 		}, 300);
 
 	}
+		var headX = $head.position().top ;
+		var headY = $head.position().left ;
+		// function eat () {
+						
+
+		// 		var $food = $("#food");
+
+		// 		$food = {
+		// 			x: (Math.floor((Math.random() * 29))) * 20,
+		// 			y: (Math.floor((Math.random() * 19))) * 20
+		// 		}
+
+		// 		console.log($food.x + ', ' + $food.y + ' , ' + score)
+		// 		if($food.x === headX && $food.y === headY){
+		// 			score += 10;
+		// 			$food = {
+		// 				x: (Math.floor((Math.random() * 29))) * 20,
+		// 				y: (Math.floor((Math.random() * 19))) * 20
+		// 			}
+		// 			console.log($food.x + ', ' + $food.y + ' ' + score)
+
+		// 		}    
+		// 	}
+		// eat();
+
+  	function createFood() {
+      	food = {
+        	x: (Math.floor(Math.random()*29)*20),
+        	y: (Math.floor(Math.random()*19)*20)
+     	}
+     	console.log(food.x + ' ' + food.y)
+
+      	for (var i=0; i>snake.length; i++) {
+        	var snakeX = snake[i].x;
+       		var snakeY = snake[i].y;
+      
+        	if (food.x===snakeX && food.y === snakeY || food.y === snakeY && food.x===snakeX) {
+          		food.x = Math.floor((Math.random() * 30) + 1);
+          		food.y = Math.floor((Math.random() * 30) + 1);
+          		console.log(food.x + ' ' + food.y)
+        	}
+      	}	
+  	}
+  	createFood();
 
 });
 
