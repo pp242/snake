@@ -4,6 +4,7 @@ $(function () {
 	menu();
 
 	var $head = $('#head');
+	var $this = $(this);
 	var direction = 0;  
 	var food;
 	var body;
@@ -93,19 +94,22 @@ $(function () {
 		  	});
 
 
- 	// function hitBody(x, y, array) {
-  //     for(var i = 0; i < array.length; i++) {
-  //       if(array[i].x === x && array[i].y === y)
-  //       return true;
-  //     } 
-  //     return false;
-  // 	}
+	 	// function hitBody(x, y, array) {
+	  //     for(var i = 0; i < array.length; i++) {
+	  //       if(array[i].x === x && array[i].y === y)
+	  //       return true;
+	  //     } 
+	  //     return false;
+	  // 	}
   	function hitBody () {
-  		for (var i = 0; i < snake.length; i++) {
-  			if (snakesnake[i].position().left === snakeX && snakesnake[i].position().left === snakeY){
-  				alert('Dead');
-				$head.css({top: '20px', left: '20px'});
-				clearInterval(movement);
+  		var snakeX = $head.position().left; + screenX;
+		var snakeY = $head.position().top; + screenY;
+  		for (var i = 1; i < snake.length; i++) {
+  			console.log(snakeX + "  " + snakeY)
+  			console.log(snake.eq(i).position().left)
+  			if (snake.eq(i).position().left === snakeX && snake.eq(i).position().left === snakeY){
+  				alert('this is broken so im sorry');
+				$this.css({top: '20px', left: '20px'});
 				menu();
   			}
   		}
@@ -135,16 +139,21 @@ $(function () {
 		    {
 		      	$head.css({left: "+=20px"},"fast");
 		    }else if(direction==32){
-		    	$head.css({left: "+=20px"},"fast");
+		    	$head.css({left: "+=0px",top: "+=0px"},"fast");
 		    } 
 		    
 		    var headX = $head.position().left ;
 			var headY = $head.position().top ;
+			
 
 
 			die();
 			eaten();
+			hitBody();
 			
+
+
+
 			function die() {
 				if(headX <= -20 || headY >= 400 || headY <= -20 || headX >= 600){
 					
@@ -226,9 +235,12 @@ $(function () {
 		$body= $('.body'); 
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
+  			
+
+  			
       		foodcoordinates.x = (Math.floor(Math.random()*29)*20) +screenX;
       		foodcoordinates.y = (Math.floor((Math.random()*18)+1)*20)+ screenY;
-      		console.log(foodcoordinates.x + ' ' + foodcoordinates.y)
+      		//console.log(foodcoordinates.x + ' ' + foodcoordinates.y)
       		var $foodXY = $food.offset({
 				left : foodcoordinates.x ,
 				top : foodcoordinates.y 
@@ -236,11 +248,11 @@ $(function () {
       		snake.push($body);
       		
     		}
-		console.log(snake);
-		console.log("snakeY: " + snakeY)
-		console.log("snakeX: " + snakeX)
-		console.log("foodcoordinatesY: " + foodcoordinates.y)
-		console.log("foodcoordinatesX: " + foodcoordinates.x)
+		// console.log(snake);
+		// console.log("snakeY: " + snakeY)
+		// console.log("snakeX: " + snakeX)
+		// console.log("foodcoordinatesY: " + foodcoordinates.y)
+		// console.log("foodcoordinatesX: " + foodcoordinates.x)
   	}
   	
 
