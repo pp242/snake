@@ -7,13 +7,22 @@
 	var direction = 0;  
 	var food;
 	var body;
-
+	var $food = $('.food');
 	var snake = $('.body')
 	var snakeHead = snake[0];
 	var score = 0;
 	var movement = setInterval(function() {});
+	var foodcoordinates = {
+		x : 0 ,
+		y : 0
+	}
+ 	var $screen = $('#screen')
+
+	var screenX = $screen.offset().left ;
+	var screenY = $screen.offset().top ;
+
 	clearInterval(movement);
-	var $food = $('#food');
+
 
 
 	function menu () {
@@ -33,7 +42,7 @@
 		/// addd elemenet to head for and delete end
 		//// had a head element and body changed it to just snakebody for ease 
 
-
+		createFood();
     	$(document).keydown(function(event){
     		clearInterval(movement);
 	    	if(event.keyCode==38)//up
@@ -99,12 +108,7 @@
 
 		movement = setInterval(function(){ 
 
-
-
-
-
-
-	    	if(direction==38)//up
+			if(direction==38)//up
 		    {
 		      	$head.css({top: "-=20px"},"fast");
 		    }else if(direction==40)//down
@@ -120,13 +124,16 @@
 		    
 		    
 
-		    var headX = $head.y;
-			var headY = $head.x ;
+		    var headX = $head.position().left ;
+			var headY = $head.position().top ;
 			die();
+			eaten();
+			console.log($head )
+			
 		
 			
 			function die() {
-				if(headX <= -20 || headX >= 400 || headY <= -20 || headY >= 600){
+				if(headX <= -20 || headY >= 400 || headY <= -20 || headX >= 600){
 					
 					alert('Dead');
 					$head.css({top: '20px', left: '20px'});
@@ -168,14 +175,9 @@
   	function createFood() {
       	
      	var $food = $('.food');
-     	console.log($food);
-
-     	var $screen = $('#screen')
-
- 		var screenX = $screen.offset().left ;
-		var screenY = $screen.offset().top ;
+     	//console.log($food);
      	
-		console.log(screenX + ' ' + screenY)
+		//console.log(screenX + ' ' + screenY)
      	foodcoordinates = {
         	//x: Math.abs((Math.floor(Math.random()*20))*30),
         	//y: Math.abs((Math.floor(Math.random()*20))*20)
@@ -198,19 +200,31 @@
 		});
 
 
-     	console.log(foodX + ' ' + foodY)
-     	
+     	//console.log(foodX + ' ' + foodY);
 
-       	var snakeX = $head.x;
-       	var snakeY = $head.y;
       
-    	if (foodX===snakeX && foodY === snakeY || foodY === snakeY && foodX ===snakeX) {
+    	
+      		
+  	}
+  	
+  	function eaten() {
+	    var snakeX = $head.position().left + screenX;
+		var snakeY = $head.position().top + screenY;
+  		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
       		foodcoordinates.x = (Math.floor(Math.random()*29)*20);
       		foodcoordinates.y = (Math.floor(Math.random()*19)*20);
       		console.log(foodcoordinates.x + ' ' + foodcoordinates.y)
-      		$head.push($food);
-    	}
-      		
+      		var $foodXY = $food.offset({
+				left : foodcoordinates.x ,
+				top : foodcoordinates.y
+				});
+      		snake.push($food);
+    		}
+		console.log(snake);
+		console.log("snakeY: " + snakeY)
+		console.log("snakeX: " + snakeX)
+		console.log("foodcoordinatesY: " + foodcoordinates.y)
+		console.log("foodcoordinatesX: " + foodcoordinates.x)
   	}
   	
 
