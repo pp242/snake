@@ -3,7 +3,7 @@
 }
 
 #screen{
-	position: absolute;
+	position: relative;
 	top: 100px;
 	margin: 0 auto;
 	background-color: green;
@@ -14,11 +14,12 @@
 }
 
 
-#body{
+.body{
 	top: 100px;
 	background-color: black;
 	height: 20px;
 	width: 20px;
+	display: inline-block;
 }
 
 
@@ -35,7 +36,7 @@
 #food{
 
 	
-	background-color: yellow;
+	background-color: purple;
 	height: 20px;
 	width: 20px;
 }
@@ -43,7 +44,8 @@
 .food{
 	height : 20px ; 
 	width : 20px ;
-	background-color: blue ;
+	background-color: yellow ;
 	z-index: 2 ;
+	position: relative;
 }
 
