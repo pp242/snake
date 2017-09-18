@@ -16,6 +16,7 @@ $(function () {
 		x : 0 ,
 		y : 0
 	}
+	var $score = $('#score') 
  	var $screen = $('#screen')
 
 	var screenX = $screen.offset().left ;
@@ -104,14 +105,16 @@ $(function () {
   	function hitBody () {
   		var snakeX = $head.position().left; + screenX;
 		var snakeY = $head.position().top; + screenY;
-  		for (var i = 1; i < snake.length; i++) {
-  			console.log(snakeX + "  " + snakeY)
-  			console.log(snake.eq(i).position().left)
-  			if (snake.eq(i).position().left === snakeX && snake.eq(i).position().left === snakeY){
-  				alert('this is broken so im sorry');
-				$this.css({top: '20px', left: '20px'});
-				menu();
-  			}
+  		for (var i = 0; i < snake.length - 1; i++) {
+  			console.log(snakeX + " !! " + snakeY)
+  			console.log(snake.eq(i+1).position().left + ' ' + snake.eq(i).offset().left);
+  			//snake.eq(i+1).offset().top = snake.eq(i).position().top ;
+  			//console.log(snake.eq(i).position().left)
+  		// 	if (snake.eq(i).position().left === snakeX && snake.eq(i).position().left === snakeY){
+  		// 		alert('this is broken so im sorry');
+				// $this.css({top: '20px', left: '20px'});
+				// menu();
+  		// 	}
   		}
   	}
 
@@ -235,9 +238,9 @@ $(function () {
 		$body= $('.body'); 
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
-  			
+  			$score.text('s c o r e : ' + score);
 
-  			
+
       		foodcoordinates.x = (Math.floor(Math.random()*29)*20) +screenX;
       		foodcoordinates.y = (Math.floor((Math.random()*18)+1)*20)+ screenY;
       		//console.log(foodcoordinates.x + ' ' + foodcoordinates.y)

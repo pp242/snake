@@ -16,8 +16,10 @@
 
 
 }
-
-
+@font-face{
+	font-family: myFirstFont;
+	src :url(images/bad-mofo/BadMofo.ttf);
+}	
 .body{
 	top: 100px;
 	background-color: black;
@@ -25,19 +27,21 @@
 	width: 20px;
 	display: inline-block;
 	border-radius: 20%;
-	font-family: 
 }
 
 #score{
 	position: absolute;
 	z-index: 10;
-	top: -10px;
+	top: -20px;
 	background: linear-gradient(to right, #88B511, #9AC503, #88B511);
-	height: 20px;
+	height: 30px;
 	width: 600px;
 	color: black;
-	font-family: takraf
+	font-family: myFirstFont;
+	font-size: 30px;
 }
+
+
 
 #head{
 	position: absolute;
