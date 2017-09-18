@@ -252,7 +252,7 @@ $(function () {
 				left : foodcoordinates.x ,
 				top : foodcoordinates.y 
 			});
-			
+
       		$newBodyElement.after(snake);
       		
     		}
