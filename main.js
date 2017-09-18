@@ -105,9 +105,13 @@ $(function () {
   	function hitBody () {
   		var snakeX = $head.position().left; + screenX;
 		var snakeY = $head.position().top; + screenY;
-  		for (var i = 0; i < snake.length - 1; i++) {
-  			console.log(snakeX + " !! " + snakeY)
-  			console.log(snake.eq(i+1).position().left + ' ' + snake.eq(i).offset().left);
+  		for (var i = 0; i < snake.length; i++) {
+  			///console.log(snakeX + " !! " + snakeY)
+  			// if (i > 0) {
+  			// 	debugger
+  			// } 
+  			console.log(snake.eq(i).position().left + ' ' + snake.eq(i).offset().left);
+
   			//snake.eq(i+1).offset().top = snake.eq(i).position().top ;
   			//console.log(snake.eq(i).position().left)
   		// 	if (snake.eq(i).position().left === snakeX && snake.eq(i).position().left === snakeY){
@@ -235,7 +239,7 @@ $(function () {
   	function eaten() {
 	    var snakeX = $head.position().left + screenX;
 		var snakeY = $head.position().top + screenY;
-		$body= $('.body'); 
+		var $newBodyElement = $('<div class="body"></div>');
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
   			$score.text('s c o r e : ' + score);
@@ -247,8 +251,9 @@ $(function () {
       		var $foodXY = $food.offset({
 				left : foodcoordinates.x ,
 				top : foodcoordinates.y 
-				});
-      		snake.push($body);
+			});
+			
+      		$newBodyElement.after(snake);
       		
     		}
 		// console.log(snake);
