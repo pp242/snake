@@ -3,8 +3,9 @@
 }
 
 #screen{
-	position: relative;
-	top: 100px;
+	position: absolute;
+	top: 200px;
+	left: 107px;
 	margin: 0 auto;
 	/*background-color: ;#AACF06*/
 	/*#9AC503;*/
@@ -13,6 +14,7 @@
 	width: 600px;
 	/*//overflow: hidden;*/
 	border-radius: 5%;
+	border-style:  solid;
 
 
 }
@@ -20,25 +22,34 @@
 	font-family: myFirstFont;
 	src :url(images/bad-mofo/BadMofo.ttf);
 }	
+
+
+
 .body{
-	top: 100px;
+	
 	background-color: black;
 	height: 20px;
 	width: 20px;
 	display: inline-block;
 	border-radius: 20%;
+	z-index: 10;
+	top: 300px;
+	left: 300px;
+
 }
 
 #score{
 	position: absolute;
 	z-index: 10;
-	top: -20px;
+	top: -30px;
+	left: -4px;
 	background: linear-gradient(to right, #88B511, #9AC503, #88B511);
-	height: 30px;
+	height: 40px;
 	width: 600px;
 	color: black;
 	font-family: myFirstFont;
-	font-size: 30px;
+	font-size: 40px;
+	border-style:  dashed;
 }
 
 
@@ -49,8 +60,8 @@
 	background-color: brown;
 	height: 20px;
 	width: 20px;
-	top: 100px;
-	left: 100px;
+	top: 200px;
+	left: 200px;
 	z-index: 2;
 	border-radius: 20%;
 }
