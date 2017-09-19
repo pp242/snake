@@ -17,7 +17,7 @@ $(function () {
 		x : 0 ,
 		y : 0
 	}
-	var highScore = 0;
+	//var highScore = 0;
 	var $score = $('#score') 
  	var $screen = $('#screen')
 
@@ -185,7 +185,7 @@ $(function () {
 					alert('Dead');
 					$head.eq(0).css({top: '100px', left: '100px'});
 					clearInterval(movement);
-					snake.remove();
+					$('.body').remove();
 					menu();
 					
 				}	
@@ -244,12 +244,6 @@ $(function () {
 			top : foodcoordinates.y
 		});
 
-
-     	//console.log(foodX + ' ' + foodY);
-
-      
-    	
-      		
   	}
 
   	function eaten() {
@@ -258,6 +252,18 @@ $(function () {
 		var $newBodyElement = $('<div class="body"></div>');
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
+  			
+  			var highScore = localStorage.getItem("highscore");
+
+			if(highScore !== null){
+			    if (score > highScore) {
+			        localStorage.setItem("highscore", score);      
+			    }
+			}
+			else{
+			    localStorage.setItem("highscore", score);
+			}
+
   			if(score>highScore){
   				highScore = score;
   			}
@@ -267,14 +273,13 @@ $(function () {
 
       		foodcoordinates.x = (Math.floor(Math.random()*29)*20) + screenX;
       		foodcoordinates.y = (Math.floor((Math.random()*18)+2)*20) + screenY;
-      		//console.log(foodcoordinates.x + ' ' + foodcoordinates.y)
       		var $foodXY = $food.offset({
 				left : foodcoordinates.x ,
 				top : foodcoordinates.y 
 			});
 
       		$head.eq(0).after($newBodyElement);
-
+      		
 
     		}
 		console.log($head);
