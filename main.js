@@ -202,7 +202,7 @@ $(function () {
 				if(headX <= -20 || headY >= 400 || headY <= 0 || headX >= 600){
 					var score = 0;
 					//debugger
-					alert('Dead');
+					//alert('Dead');
 					$head.eq(0).css({top: '100px', left: '100px'});
 					clearInterval(movement);
 					$('.nextThing').remove();
@@ -256,7 +256,7 @@ $(function () {
 			$theSnake.each(function (i, $currentBlock) {
 				
 				
-				if (i != 0) {
+				if (i != 0 ) {
 					var index = i - 1;
 					
 					prevX = $theOldSnake.eq(index).css('left');
@@ -287,7 +287,7 @@ $(function () {
 	function dead () {
 		var score = 0;
 		//debugger
-		alert('You hit yourself');
+		//alert('You hit yourself');
 		$head.eq(0).css({top: '100px', left: '100px'});
 		clearInterval(movement);
 		$('.nextThing').remove();
