@@ -31,7 +31,7 @@ $(function () {
 
 	clearInterval(movement);
 
-
+ 
 
 	function menu () {
 		var menuChoice = prompt('What do you want?\nPlay Snake - 1\nSettings - 2\nQuit - No need to press a button, just walk away man');
