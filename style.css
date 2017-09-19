@@ -25,7 +25,9 @@
 	font-family: myFirstFont;
 	src :url(images/bad-mofo/BadMofo.ttf);
 }
-
+body{
+	overflow: hidden;
+}
 
 .stop-scrolling {
   height: 100%;
@@ -39,7 +41,7 @@
 }
 
 
-.body{
+.nextThing{
 	
 	background-color: black;
 	height: 20px;
@@ -50,6 +52,8 @@
 
 	overflow: hidden;
 }
+
+
 
 #score{
 	position: absolute;
