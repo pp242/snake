@@ -23,8 +23,8 @@ $(function () {
 
 	var screenX = $screen.offset().left ;
 	var screenY = $screen.offset().top ;
-	var snakeX = $head.position().left + screenX;
-	var snakeY = $head.position().top + screenY;
+	var snakeX = $head.eq(0).position().left + screenX;
+	var snakeY = $head.eq(0).position().top + screenY;
 
 	clearInterval(movement);
 
@@ -115,8 +115,8 @@ $(function () {
 	  //     return false;
 	  // 	}
   	function hitBody () {
-  		var snakeX = $head.position().left; + screenX;
-		var snakeY = $head.position().top; + screenY;
+  		var snakeX = $head.eq(0).position().left; + screenX;
+		var snakeY = $head.eq(0).position().top; + screenY;
   		for (var i = 0; i < snake.length; i++) {
   			///console.log(snakeX + " !! " + snakeY)
   			// if (i > 0) {
@@ -148,29 +148,29 @@ $(function () {
 			
 			if(direction == 38)//up 38
 		    {
-		      	$head.css({top: "-=20px"},"fast");
+		      	$head.eq(0).css({top: "-=20px"},"fast");
 		      	wrongDirection = 40;
 		    }else if(direction == 40)//down 40
 		    {
-		      	$head.css({top: "+=20px"},"fast");
+		      	$head.eq(0).css({top: "+=20px"},"fast");
 		      	wrongDirection = 38;
 		    }else if(direction == 37)//left 37
 		    {
-		      	$head.css({left: "-=20px"},"fast");
+		      	$head.eq(0).css({left: "-=20px"},"fast");
 		      	wrongDirection = 39;
 		    }else if(direction == 39)//right 39
 		    {
-		      	$head.css({left: "+=20px"},"fast");
+		      	$head.eq(0).css({left: "+=20px"},"fast");
 		      	wrongDirection = 37;
 		    }else if(direction == 32){
-		    	$head.css({left: "+=0px",top: "+=0px"},"fast");
+		    	$head.css.eq(0)({left: "+=0px",top: "+=0px"},"fast");
 
 		    } 
 		    
-		    var headX = $head.position().left ;
-			var headY = $head.position().top ;
-			
-
+		    var headX = $head.eq(0).position().left ;
+			var headY = $head.eq(0).position().top ;
+			console.log("headx. " + headX);
+			console.log("heady. " + headY);
 
 			die();
 			eaten();
@@ -183,8 +183,9 @@ $(function () {
 				if(headX <= -20 || headY >= 400 || headY <= 0 || headX >= 600){
 					var score = 0;
 					alert('Dead');
-					$head.css({top: '20px', left: '20px'});
+					$head.eq(0).css({top: '100px', left: '100px'});
 					clearInterval(movement);
+					snake.remove();
 					menu();
 					
 				}	
@@ -252,9 +253,9 @@ $(function () {
   	}
 
   	function eaten() {
-	    var snakeX = $head.position().left + screenX;
-		var snakeY = $head.position().top + screenY;
-		var $newBodyElement = $('<div id="body"></div>');
+	    var snakeX = $head.eq(0).position().left + screenX;
+		var snakeY = $head.eq(0).position().top + screenY;
+		var $newBodyElement = $('<div class="body"></div>');
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
   			if(score>highScore){
@@ -272,7 +273,7 @@ $(function () {
 				top : foodcoordinates.y 
 			});
 
-      		$newBodyElement.insertAfter($head)
+      		$head.eq(0).after($newBodyElement);
 
 
     		}
