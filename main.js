@@ -27,6 +27,7 @@ $(function () {
 	var snakeY = $head.eq(0).position().top + screenY;
 	var snake1x = $('.nextThing')
     var snake1y = $('.nextThing')
+    // var theSnake = [$head];
 
 	clearInterval(movement);
 
@@ -146,12 +147,19 @@ $(function () {
 
 
 		movement = setInterval(function(){ 
-		///console.log();
-		snake1x.eq(0).offset({
-			left : $head.eq(0).position().left + screenX, 
-			top : $head.eq(0).position().top + screenY
-		}); 
 		
+			// snake1x.eq(0).offset({
+			// 		left : $head.eq(0).position().left + screenX, 
+			// 		top : $head.eq(0).position().top + screenY
+			// 	}); 	
+			// for (var i = 0; i <= score; i++) {
+				
+			// 	snake1x.eq(i+1).offset({
+			// 		left : snake1x.eq(i).position().left + screenX, 
+			// 		top : snake1x.eq(i).position().top + screenY
+			// 	}); 
+			// }
+
 			if(direction == 38)//up 38
 		    {
 		      	$head.eq(0).css({top: "-=20px"},"fast");
@@ -176,8 +184,9 @@ $(function () {
 		    
 		    var headX = $head.eq(0).position().left ;
 			var headY = $head.eq(0).position().top ;
-			console.log("headx. " + headX);
-			console.log("heady. " + headY);
+			moveBody(headX, headY);
+			// console.log("headx. " + headX);
+			// console.log("heady. " + headY);
 
 			die();
 			eaten();
@@ -192,6 +201,7 @@ $(function () {
 			function die() {
 				if(headX <= -20 || headY >= 400 || headY <= 0 || headX >= 600){
 					var score = 0;
+					//debugger
 					alert('Dead');
 					$head.eq(0).css({top: '100px', left: '100px'});
 					clearInterval(movement);
@@ -205,7 +215,8 @@ $(function () {
 		}, 100);
 
 
-	}createFood();
+	}
+	createFood();
 
 		// function eat () {
 						
@@ -230,6 +241,44 @@ $(function () {
 		// 	}
 		// eat();
 
+	function moveBody (x, y) {
+
+		
+		var $theSnake = $('.snake-element');
+		var $theOldSnake = $('.snake-element').clone();
+
+		if ($theSnake.length) {
+
+			var prevX = x;
+			var prevY = y;
+			var $oldBodyElement = null
+			
+			$theSnake.each(function (i, $currentBlock) {
+				
+				
+				if (i != 0) {
+					var index = i - 1;
+					
+					prevX = $theOldSnake.eq(index).css('left');
+					prevY = $theOldSnake.eq(index).css('top');
+
+					$theSnake.eq(i).css({
+						top: prevY,
+						left: prevX 
+					});
+				}
+
+			
+			});
+
+
+
+			
+		}
+
+
+	}
+ 
   	function createFood() {
       	
      	var $food = $('.food');
@@ -259,7 +308,7 @@ $(function () {
   	function eaten() {
 	    var snakeX = $head.eq(0).position().left + screenX;
 		var snakeY = $head.eq(0).position().top + screenY;
-		var $newBodyElement = $('<div class="body"></div>');
+		var $newBodyElement = $('<div class="nextThing snake-element"></div>');
   		
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
@@ -290,13 +339,15 @@ $(function () {
 			});
 
       		$head.eq(0).after($newBodyElement);
+      		// theSnake.push($newBodyElement);
+      		
       		var snake1x = snakeX;
       		var snake1y = snakeY;
 
 
 
     		}
-		console.log($head);
+		//console.log($head);
 		//console.log("snakeY: " + snakeY)
 		//console.log("snakeX: " + snakeX)
 		//console.log("foodcoordinatesY: " + foodcoordinates.y)
