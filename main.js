@@ -205,7 +205,7 @@ $(function () {
 					alert('Dead');
 					$head.eq(0).css({top: '100px', left: '100px'});
 					clearInterval(movement);
-					$('.body').remove();
+					$('.nextThing').remove();
 					menu();
 					
 				}	
