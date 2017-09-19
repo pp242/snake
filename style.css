@@ -58,7 +58,7 @@ body{
 
 #score{
 	position: absolute;
-	z-index: 10;
+	z-index: 11;
 	top: -30px;
 	left: -4px;
 	background: linear-gradient(to right, #88B511, #9AC503, #88B511);
@@ -80,7 +80,7 @@ body{
 	width: 20px;
 	top: 200px;
 	left: 200px;
-	z-index: 2;
+	z-index: 10;
 	border-radius: 0%;
 	overflow: hidden;
 }
