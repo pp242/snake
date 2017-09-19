@@ -201,7 +201,7 @@ $(function () {
 			function die() {
 				if(headX <= -20 || headY >= 400 || headY <= 0 || headX >= 600){
 					var score = 0;
-					debugger
+					//debugger
 					alert('Dead');
 					$head.eq(0).css({top: '100px', left: '100px'});
 					clearInterval(movement);
@@ -261,6 +261,13 @@ $(function () {
 					
 					prevX = $theOldSnake.eq(index).css('left');
 					prevY = $theOldSnake.eq(index).css('top');
+					console.log('head x ' + $head.eq(0).position().left + ' pasa ' + prevX)
+					console.log(' head y:' + $head.eq(0).position().top + ' pskdp ' + prevY)
+					var nameX = $head.eq(0).position().left + 'px'
+					var nameY = $head.eq(0).position().top + 'px'
+					if(prevX == nameX &&  prevY == nameY){
+						dead();
+					}
 
 					$theSnake.eq(i).css({
 						top: prevY,
@@ -276,6 +283,15 @@ $(function () {
 		}
 
 
+	}
+	function dead () {
+		var score = 0;
+		//debugger
+		alert('You hit yourself');
+		$head.eq(0).css({top: '100px', left: '100px'});
+		clearInterval(movement);
+		$('.nextThing').remove();
+		menu();
 	}
  
   	function createFood() {
@@ -346,6 +362,7 @@ $(function () {
 
 
     		}
+
 		//console.log($head);
 		//console.log("snakeY: " + snakeY)
 		//console.log("snakeX: " + snakeX)
