@@ -1,6 +1,7 @@
 #phone{
 	/*background-image: url('images/style.jpeg');*/
 	overflow: hidden;
+	/*margin: 0 auto;*/
 }
 
 #screen{
@@ -29,6 +30,12 @@
 .stop-scrolling {
   height: 100%;
   
+}
+
+.snakeBody{
+	background-color: black;
+	height: 20px;
+	width: 20px;
 }
 
 

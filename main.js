@@ -5,7 +5,8 @@ $(function () {
 
 	var $head = $('#head');
 	var $this = $(this);
-	var direction = 0;  
+	var direction = 0; 
+	var wrongDirection = 0; 
 	var food;
 	var body;
 	var $food = $('.food');
@@ -50,30 +51,33 @@ $(function () {
 		createFood();
     	$(document).keydown(function(event){
     		clearInterval(movement);
-	    	if(event.keyCode==38)//up
+	    	if(event.keyCode == 38 && event.keyCode != wrongDirection)//up
 		    {
 		      	direction = event.keyCode;
 		     	move(direction);
 		     	event.preventDefault();
-		    }else if(event.keyCode==40)//down
+
+		    }else if(event.keyCode == 40 && event.keyCode != wrongDirection)//down
 		    {
 		      	direction = event.keyCode;
 		      	move(direction);
 		      	event.preventDefault();
-		    }else if(event.keyCode==37)//left
+		    }else if(event.keyCode == 37 && event.keyCode != wrongDirection)//left
 		    {
 		      	direction = event.keyCode;
 		      	move(direction);
 		      	event.preventDefault();
-		    }else if(event.keyCode==39)//right
+		    }else if(event.keyCode == 39 && event.keyCode != wrongDirection)//right
 		    {
 		      	direction = event.keyCode;
 		      	move(direction);
 		      	event.preventDefault();
-		    }else if(event.keyCode==32){
+		    }else if(event.keyCode == 32){
 		    	direction = event.keyCode;
 		    	move(direction);
 		    	event.preventDefault();
+		    }else{
+		    	move(direction);
 		    } 
 	  	});
 	}  	
@@ -140,21 +144,27 @@ $(function () {
 
 
 		movement = setInterval(function(){ 
-
-			if(direction==38)//up
+			
+			
+			if(direction == 38)//up 38
 		    {
 		      	$head.css({top: "-=20px"},"fast");
-		    }else if(direction==40)//down
+		      	wrongDirection = 40;
+		    }else if(direction == 40)//down 40
 		    {
 		      	$head.css({top: "+=20px"},"fast");
-		    }else if(direction==37)//left
+		      	wrongDirection = 38;
+		    }else if(direction == 37)//left 37
 		    {
 		      	$head.css({left: "-=20px"},"fast");
-		    }else if(direction==39)//right
+		      	wrongDirection = 39;
+		    }else if(direction == 39)//right 39
 		    {
 		      	$head.css({left: "+=20px"},"fast");
-		    }else if(direction==32){
+		      	wrongDirection = 37;
+		    }else if(direction == 32){
 		    	$head.css({left: "+=0px",top: "+=0px"},"fast");
+
 		    } 
 		    
 		    var headX = $head.position().left ;
@@ -181,7 +191,7 @@ $(function () {
 			}
 				
 
-		}, 200);
+		}, 100);
 
 
 	}createFood();
@@ -225,9 +235,6 @@ $(function () {
      	}
 
 
-
-
-
      	var foodX = foodcoordinates.x;
      	var foodY = foodcoordinates.y;
 
@@ -247,13 +254,13 @@ $(function () {
   	function eaten() {
 	    var snakeX = $head.position().left + screenX;
 		var snakeY = $head.position().top + screenY;
-		var $newBodyElement = $('<div class="body"></div>');
+		var $newBodyElement = $('<div id="body"></div>');
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
   			if(score>highScore){
   				highScore = score;
   			}
-  			$score.text('s c o r e : ' + score + '. . . . . . h i g h s c o r e : ' + highScore);
+  			$score.text('s c o r e : ' + score + '. . . . . .h i g h s c o r e : ' + highScore);
   			
   			
 
@@ -265,15 +272,15 @@ $(function () {
 				top : foodcoordinates.y 
 			});
 
-      		$newBodyElement.after(snake);
+      		$newBodyElement.insertAfter($head)
 
 
     		}
-		console.log(snake);
-		console.log("snakeY: " + snakeY)
-		console.log("snakeX: " + snakeX)
-		console.log("foodcoordinatesY: " + foodcoordinates.y)
-		console.log("foodcoordinatesX: " + foodcoordinates.x)
+		console.log($head);
+		//console.log("snakeY: " + snakeY)
+		//console.log("snakeX: " + snakeX)
+		//console.log("foodcoordinatesY: " + foodcoordinates.y)
+		//console.log("foodcoordinatesX: " + foodcoordinates.x)
   	}
   	
 
