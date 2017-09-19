@@ -54,21 +54,26 @@ $(function () {
 		    {
 		      	direction = event.keyCode;
 		     	move(direction);
+		     	event.preventDefault();
 		    }else if(event.keyCode==40)//down
 		    {
 		      	direction = event.keyCode;
 		      	move(direction);
+		      	event.preventDefault();
 		    }else if(event.keyCode==37)//left
 		    {
 		      	direction = event.keyCode;
 		      	move(direction);
+		      	event.preventDefault();
 		    }else if(event.keyCode==39)//right
 		    {
 		      	direction = event.keyCode;
 		      	move(direction);
+		      	event.preventDefault();
 		    }else if(event.keyCode==32){
 		    	direction = event.keyCode;
 		    	move(direction);
+		    	event.preventDefault();
 		    } 
 	  	});
 	}  	
@@ -76,6 +81,7 @@ $(function () {
 		    	clearInterval(movement);
 		    	direction = 37;
 				move(direction);
+
 		 	});
 
 		    $("#buttonRight").click(function(event){
@@ -247,7 +253,7 @@ $(function () {
   			if(score>highScore){
   				highScore = score;
   			}
-  			$score.text('s c o r e : ' + score + '. . . . . . . h i g h s c o r e : ' + highScore);
+  			$score.text('s c o r e : ' + score + '. . . . . . h i g h s c o r e : ' + highScore);
   			
   			
 
@@ -263,7 +269,7 @@ $(function () {
 
 
     		}
-		console.log($newBodyElement);
+		console.log(snake);
 		console.log("snakeY: " + snakeY)
 		console.log("snakeX: " + snakeX)
 		console.log("foodcoordinatesY: " + foodcoordinates.y)

@@ -1,5 +1,6 @@
 #phone{
 	/*background-image: url('images/style.jpeg');*/
+	overflow: hidden;
 }
 
 #screen{
@@ -12,17 +13,23 @@
 	background: radial-gradient(circle,#bdf407, #9AC503, #88B511);
 	height: 400px;
 	width: 600px;
-	/*//overflow: hidden;*/
+	
 	border-radius: 5%;
 	border-style:  solid;
+
 
 
 }
 @font-face{
 	font-family: myFirstFont;
 	src :url(images/bad-mofo/BadMofo.ttf);
-}	
+}
 
+
+.stop-scrolling {
+  height: 100%;
+  
+}
 
 
 .body{
@@ -33,9 +40,8 @@
 	display: inline-block;
 	border-radius: 20%;
 	z-index: 10;
-	top: 300px;
-	left: 300px;
 
+	overflow: hidden;
 }
 
 #score{
@@ -64,6 +70,7 @@
 	left: 200px;
 	z-index: 2;
 	border-radius: 20%;
+	overflow: hidden;
 }
 
 
