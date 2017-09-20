@@ -20,7 +20,12 @@ $(function () {
 	var $backToMenu = $('#backToMenu');
 	var $backToMenuI = $('#backToMenuI');
 	var $instructionsButton = $('#instructionsButton');
-	var $instructions = $('#instructions')
+	var $instructions = $('#instructions');
+	var $highScore = $('highScore');
+	var $highScore2 = $('highScore2');
+	var $highScore3 = $('highScore3');
+	var $highScore4 = $('highScore4');
+	var $highScore5 = $('highScore5');
 	var score = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
