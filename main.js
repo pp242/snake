@@ -21,11 +21,12 @@ $(function () {
 	var $backToMenuI = $('#backToMenuI');
 	var $instructionsButton = $('#instructionsButton');
 	var $instructions = $('#instructions');
-	var $highScore = $('highScore');
-	var $highScore2 = $('highScore2');
-	var $highScore3 = $('highScore3');
-	var $highScore4 = $('highScore4');
-	var $highScore5 = $('highScore5');
+	var $highScore = $('#highScore');
+	var $highScore2 = $('#highScore2');
+	var $highScore3 = $('#highScore3');
+	var $highScore4 = $('#highScore4');
+	var $highScore5 = $('#highScore5');
+	var $deathScreen = $('#deathScreen');
 	var score = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
@@ -298,33 +299,32 @@ $(function () {
 			if(highScore !== null){
 			    if (score >= highScore) {
 			        localStorage.setItem("highScore", score);      
-			    }else if(highScore > score || score >= highScore2){
+			    }else if(highScore > score && score >= highScore2){
 			    	localStorage.setItem("highScore2", score);
-			    }else if(highScore2 > score || score >= highScore3){
+			    }else if(highScore2 > score && score >= highScore3){
 			    	localStorage.setItem("highScore3", score);
-			    }else if(highScore3 > score || score >= highScore4){
+			    }else if(highScore3 > score && score >= highScore4){
 			    	localStorage.setItem("highScore4", score);
-			    }else if(highScore4 > score || score >= highScore5){
+			    }else if(highScore4 > score && score >= highScore5){
 			    	localStorage.setItem("highScore5", score);
 			    }
 			}
 			else{
 			    localStorage.setItem("highScore", score);
 			}
-			console.log(highScore + "  " + highScore2 + ' '+ highScore3 +' '+ highScore4 +' '+ highScore5)
-
   			if(score>highScore){
   				highScore = score;
-  			}else if(highScore > score || score >= highScore2){
-		    	highScore2 = score;
-		  	}else if(highScore2 > score || score >= highScore3){
-		    	highScore3 = score;
-		    }else if(highScore3 > score || score >= highScore4){
-		    	highScore4 = score;
-		    }else if(highScore4 > score || score >= highScore5){
-		    	highScore5 = score;
-		    }
+  			}
   			$score.text('s c o r e : ' + score + '. . . . . .h i g h s c o r e : ' + highScore);
+  			
+  			$highScore.text('h i g h s c o r e : ' + highScore);
+			$highScore2.text('second highscore : ' + highScore2);
+			$highScore3.text('third highscore : ' + highScore3);
+			$highScore4.text('fourth highscore : ' + highScore4);
+			$highScore5.text('fifth highscore : ' + highScore5);
+
+
+
 			foodcoordinates.x = (Math.floor(Math.random()*29)*20) + screenX;
       		foodcoordinates.y = (Math.floor((Math.random()*18)+2)*20) + screenY;
       		var $foodXY = $food.offset({
@@ -365,41 +365,38 @@ $(function () {
 	}
 
 	function leaderboard() {
-		var highScore = localStorage.getItem("highscore");
-		var highScore2 = localStorage.getItem("highscore2");
-		var highScore3 = localStorage.getItem("highscore3");
-		var highScore4 = localStorage.getItem("highscore4");
-		var highScore5 = localStorage.getItem("highscore5");
+
+		
 		if($leaderboard.hasClass('visibility')){
 			$leaderboard.removeClass('visibility');
 		}
+		var highScore = localStorage.getItem("highScore");
+		highScore2 = localStorage.getItem("highScore2");
+		highScore3 = localStorage.getItem("highScore3");
+		highScore4 = localStorage.getItem("highScore4");
+		highScore5 = localStorage.getItem("highScore5");
 		
 		$highScore.mouseover(function(event){
-	 		$highScore.text('h i g h s c o r e : ' + highScore);
-	 		$playGame.css({
+	 		$highScore.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore2.mouseover(function(event){
-	 		$highScore2.text('second highscore : ' + highScore2);
 	 		$highScore2.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore3.mouseover(function(event){
-	 		$highScore3.text('third highscore : ' + highScore3);
 	 		$highScore3.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore4.mouseover(function(event){
-	 		$highScore4.text('fourth highscore : ' + highScore4);
 	 		$highScore4.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore5.mouseover(function(event){
-	 		$highScore5.text('fifth highscore : ' + highScore5);
 	 		$highScore5.css({
 	 			background: getRandomColor
 	 		})  
@@ -418,7 +415,6 @@ $(function () {
 	 			background: 'transparent'
 	 		})
 	 	});
-	 	console.log(highScore + "  " + highScore2 + ' '+ highScore3 +' '+ highScore4 +' '+ highScore5);
 	}
 	function instructions () {
 		if($instructions.hasClass('visibility')){
@@ -435,6 +431,25 @@ $(function () {
 		});
 		$backToMenuI.mouseleave(function(event){
 	 		$backToMenuI.css({
+	 			background: 'transparent'
+	 		})
+	 	});
+	}
+	function deathScreen () {
+		if($deathScreen.hasClass('visibility')){
+			$deathScreen.removeClass('visibility');
+		}
+		$backToMenuD.click(function(event){
+	 		menu();
+	 		$deathScreen.addClass('visibility');
+		});
+		$backToMenuD.mouseover(function(event){
+	 		$backToMenuD.css({
+	 			background: getRandomColor
+	 		})  
+		});
+		$backToMenuD.mouseleave(function(event){
+	 		$backToMenuD.css({
 	 			background: 'transparent'
 	 		})
 	 	});
