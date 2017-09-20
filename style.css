@@ -138,7 +138,7 @@ body{
 	color: black;
 }
 
-
+/*
 #backToMenu{
 	border-style:  solid;
 	background: transparent;
@@ -149,6 +149,17 @@ body{
 	width: 200px;
 	top: 40px;
 	margin: 0 auto;
+	color: black;
+}*/
+#actualInstructions{
+	border-style:  solid;
+	background: transparent;
+	font-family: myFirstFont;
+	text-align:center;
+	font-size: 25px;
+	height: 250px ;
+	width: 590px;
+	margin: 15px auto;
 	color: black;
 }
 

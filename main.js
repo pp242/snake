@@ -16,6 +16,10 @@ $(function () {
 	var $settings = $('#settings');
 	var $menuButton = $('#menuButton');
 	var $result = $('#result');
+	var $leaderboard = $('#leaderboard');
+	var $backToMenu = $('#backToMenu');
+	var $backToMenuI = $('#backToMenuI');
+	var $instructions = $('#instructions');
 	var score = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
@@ -34,73 +38,79 @@ $(function () {
 	clearInterval(movement);
 	
 	function menu () {
-		// var menuChoice = prompt('What do you want?\nPlay Snake - 1\nSettings - 2\nQuit - No need to press a button, just walk away man');
-		// if(menuChoice == 1){
-		// 	score = 0;
-		// 	playGame();
-		// }else if(menuChoice == 2){
-		// 	//settings() not a function yet
-		// }else{
-		// 	///quit();
-		// }
+		$instructions.addClass('visibility');
+		$leaderboard.addClass('visibility');
+
 		if($menu.hasClass('visibility')){
 			$menu.removeClass('visibility');
 		}
 		$playGame.click(function(event){
-		 		playGame();
-		 		$menu.addClass('visibility');
+	 		playGame();
+	 		$menu.addClass('visibility');
 		});
 		$playGame.mouseover(function(event){
-		 		$playGame.css({
-		 			background: getRandomColor
-		 		})  
+	 		$playGame.css({
+	 			background: getRandomColor
+	 		})  
 		});
 		$playGame.mouseleave(function(event){
-		 		$playGame.css({
-		 			background: 'transparent'
-		 		})  
+	 		$playGame.css({
+	 			background: 'transparent'
+	 		})
+	 	});	  
+		$instructions.click(function(event){
+		 	instructions();
+		 	$menu.addClass('visibility');
+		});
+		$instructions.mouseover(function(event){
+	 		$instructions.css({
+	 			background: getRandomColor
+	 		})  
+		});
+		$instructions.mouseleave(function(event){
+	 		$instructions.css({
+	 			background: 'transparent'
+	 		})   		
 		});
 		$leaderboardButton.click(function(event){
-		 		leaderboard();
-		 		$menu.addClass('visibility');
+	 		leaderboard();
+	 		$menu.addClass('visibility');
 		});
 		$leaderboardButton.mouseover(function(event){
-		 		$leaderboardButton.css({
-		 			background: getRandomColor
-		 		})  
+	 		$leaderboardButton.css({
+	 			background: getRandomColor
+	 		})  
 		});
 		$leaderboardButton.mouseleave(function(event){
-		 		$leaderboardButton.css({
-		 			background: 'transparent'
-		 		})  
+	 		$leaderboardButton.css({
+	 			background: 'transparent'
+	 		})  
 		});
 		$settings.click(function(event){
-		 		
-		 		$menu.addClass('visibility')
+		 	$menu.addClass('visibility')
 		});
 		$settings.mouseover(function(event){
-		 		$settings.css({
-		 			background: getRandomColor
-		 		})  
+	 		$settings.css({
+	 			background: getRandomColor
+	 		})  
 		});
 		$settings.mouseleave(function(event){
-		 		$settings.css({
-		 			background: 'transparent'
-		 		})  
+	 		$settings.css({
+	 			background: 'transparent'
+	 		})  
 		});
 		$credits.click(function(event){
-		 		
-		 		$menu.addClass('visibility');
+		 	$menu.addClass('visibility');
 		});
 		$credits.mouseover(function(event){
-		 		$credits.css({
-		 			background: getRandomColor
-		 		})  
+	 		$credits.css({
+	 			background: getRandomColor
+	 		})  
 		});
 		$credits.mouseleave(function(event){
-		 		$credits.css({
-		 			background: 'transparent'
-		 		})  
+	 		$credits.css({
+	 			background: 'transparent'
+	 		})  
 		});
 		//$menu.addClass('visibility')
 	}
@@ -343,25 +353,49 @@ $(function () {
 	}
 
 	function leaderboard() {
-		if($menu.hasClass('visibility')){
-			$menu.removeClass('visibility');
+		if($leaderboard.hasClass('visibility')){
+			$leaderboard.removeClass('visibility');
 		}
-		$playGame.click(function(event){
-		 		playGame();
-		 		$menu.addClass('visibility');
+		
+		$highScore.mouseover(function(event){
+	 		$playGame.css({
+	 			background: getRandomColor
+	 		})  
 		});
-		$playGame.mouseover(function(event){
-		 		$playGame.css({
-		 			background: getRandomColor
-		 		})  
+		$highScore2.mouseover(function(event){
+	 		$playGame.css({
+	 			background: getRandomColor
+	 		})  
 		});
-		$playGame.mouseleave(function(event){
-		 		$playGame.css({
-		 			background: 'transparent'
-		 		})  
+		$highScore3.mouseover(function(event){
+	 		$playGame.css({
+	 			background: getRandomColor
+	 		})  
+		});
+		$highScore4.mouseover(function(event){
+	 		$playGame.css({
+	 			background: getRandomColor
+	 		})  
+		});
+		$highScore5.mouseover(function(event){
+	 		$playGame.css({
+	 			background: getRandomColor
+	 		})  
+		});
+		$backToMenu.click(function(event){
+	 		menu();
+	 		$leaderboard.addClass('visibility');
 		});
 	}
-
+	function instructions () {
+		if($instructions.hasClass('visibility')){
+			$instructions.removeClass('visibility');
+		}
+		$backToMenuI.click(function(event){
+	 		menu();
+	 		$instructions.addClass('visibility');
+		});
+	}
 });
 
 
