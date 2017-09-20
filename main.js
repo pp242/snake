@@ -316,7 +316,6 @@ $(function () {
 			else{
 			    localStorage.setItem("highScore", score);
 			}
-			leaderboard();
 			console.log(highScore + highScore2 + ' '+ highScore3 + highScore4 + highScore4)
 
   			if(score>highScore){
@@ -369,31 +368,31 @@ $(function () {
 		}
 		
 		$highScore.mouseover(function(event){
-	 		$highScore.text('h i g h s c o r e : ' + highScore);
+	 		$highScore.text('h i g h s c o r e : ' + localStorage.getItem("highScore"));
 	 		$playGame.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore2.mouseover(function(event){
-	 		$highScore2.text('second highscore : ' + highScore2);
+	 		$highScore2.text('second highscore : ' + localStorage.getItem("highScore2"));
 	 		$highScore2.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore3.mouseover(function(event){
-	 		$highScore3.text('third highscore : ' + highScore3);
+	 		$highScore3.text('third highscore : ' + localStorage.getItem("highScore3"));
 	 		$highScore3.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore4.mouseover(function(event){
-	 		$highScore4.text('fourth highscore : ' + highScore4);
+	 		$highScore4.text('fourth highscore : ' + localStorage.getItem("highScore4"));
 	 		$highScore4.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore5.mouseover(function(event){
-	 		$highScore5.text('fifth highscore : ' + highScore5);
+	 		$highScore5.text('fifth highscore : ' + localStorage.getItem("highScore5"));
 	 		$highScore5.css({
 	 			background: getRandomColor
 	 		})  
