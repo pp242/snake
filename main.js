@@ -202,7 +202,7 @@ $(function () {
 				if(headX <= -20 || headY >= 400 || headY <= 0 || headX >= 600){
 					var score = 0;
 					//debugger
-					//alert('Dead');
+					 //alert('Dead');
 					$head.eq(0).css({top: '100px', left: '100px'});
 					clearInterval(movement);
 					$('.nextThing').remove();
