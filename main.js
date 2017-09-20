@@ -48,7 +48,6 @@ $(function () {
 		}
 		$playGame.click(function(event){
 		 		playGame();
-		 		console.log('working');
 		 		$menu.addClass('visibility');
 		});
 		$playGame.mouseover(function(event){
@@ -62,7 +61,7 @@ $(function () {
 		 		})  
 		});
 		$leaderboardButton.click(function(event){
-		 		
+		 		leaderboard();
 		 		$menu.addClass('visibility');
 		});
 		$leaderboardButton.mouseover(function(event){
@@ -338,10 +337,31 @@ $(function () {
 	function getRandomColor() {
 		var letters = '0123456789ABCDEF';
 		var color = '#';
-			for (var i = 0; i < 6; i++) {
-		    	color += letters[Math.floor(Math.random() * 16)];
-		  	}return color;
+		for (var i = 0; i < 6; i++) {
+	    	color += letters[Math.floor(Math.random() * 16)];
+	  	}return color;
+	}
+
+	function leaderboard() {
+		if($menu.hasClass('visibility')){
+			$menu.removeClass('visibility');
 		}
+		$playGame.click(function(event){
+		 		playGame();
+		 		$menu.addClass('visibility');
+		});
+		$playGame.mouseover(function(event){
+		 		$playGame.css({
+		 			background: getRandomColor
+		 		})  
+		});
+		$playGame.mouseleave(function(event){
+		 		$playGame.css({
+		 			background: 'transparent'
+		 		})  
+		});
+	}
+
 });
 
 
