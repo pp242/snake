@@ -27,11 +27,6 @@ $(function () {
 	var $highScore4 = $('highScore4');
 	var $highScore5 = $('highScore5');
 	var score = 0;
-	var highScore = 0;
-	var highScore2 = 0;
-	var highScore3 = 0;
-	var highScore4 = 0;
-	var highScore5 = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
 		x : 0 ,
@@ -316,12 +311,19 @@ $(function () {
 			else{
 			    localStorage.setItem("highScore", score);
 			}
-			console.log(highScore + highScore2 + ' '+ highScore3 + highScore4 + highScore4)
+			console.log(highScore + "  " + highScore2 + ' '+ highScore3 +' '+ highScore4 +' '+ highScore5)
 
   			if(score>highScore){
   				highScore = score;
-  			}
-
+  			}else if(highScore > score || score >= highScore2){
+		    	highScore2 = score;
+		  	}else if(highScore2 > score || score >= highScore3){
+		    	highScore3 = score;
+		    }else if(highScore3 > score || score >= highScore4){
+		    	highScore4 = score;
+		    }else if(highScore4 > score || score >= highScore5){
+		    	highScore5 = score;
+		    }
   			$score.text('s c o r e : ' + score + '. . . . . .h i g h s c o r e : ' + highScore);
 			foodcoordinates.x = (Math.floor(Math.random()*29)*20) + screenX;
       		foodcoordinates.y = (Math.floor((Math.random()*18)+2)*20) + screenY;
@@ -342,7 +344,7 @@ $(function () {
 	function dyingIntoWall() {
 		var headX = $head.eq(0).position().left ;
 		var headY = $head.eq(0).position().top ;
-		if(headX <= -20 || headY >= 400 || headY <= 0 || headX >= 600){
+		if(headX <= -20 || headY >= 420 || headY <= 0 || headX >= 600){
 			dead();
 		}	
 	}
@@ -363,36 +365,41 @@ $(function () {
 	}
 
 	function leaderboard() {
+		var highScore = localStorage.getItem("highscore");
+		var highScore2 = localStorage.getItem("highscore2");
+		var highScore3 = localStorage.getItem("highscore3");
+		var highScore4 = localStorage.getItem("highscore4");
+		var highScore5 = localStorage.getItem("highscore5");
 		if($leaderboard.hasClass('visibility')){
 			$leaderboard.removeClass('visibility');
 		}
 		
 		$highScore.mouseover(function(event){
-	 		$highScore.text('h i g h s c o r e : ' + localStorage.getItem("highScore"));
+	 		$highScore.text('h i g h s c o r e : ' + highScore);
 	 		$playGame.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore2.mouseover(function(event){
-	 		$highScore2.text('second highscore : ' + localStorage.getItem("highScore2"));
+	 		$highScore2.text('second highscore : ' + highScore2);
 	 		$highScore2.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore3.mouseover(function(event){
-	 		$highScore3.text('third highscore : ' + localStorage.getItem("highScore3"));
+	 		$highScore3.text('third highscore : ' + highScore3);
 	 		$highScore3.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore4.mouseover(function(event){
-	 		$highScore4.text('fourth highscore : ' + localStorage.getItem("highScore4"));
+	 		$highScore4.text('fourth highscore : ' + highScore4);
 	 		$highScore4.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore5.mouseover(function(event){
-	 		$highScore5.text('fifth highscore : ' + localStorage.getItem("highScore5"));
+	 		$highScore5.text('fifth highscore : ' + highScore5);
 	 		$highScore5.css({
 	 			background: getRandomColor
 	 		})  
@@ -411,6 +418,7 @@ $(function () {
 	 			background: 'transparent'
 	 		})
 	 	});
+	 	console.log(highScore + "  " + highScore2 + ' '+ highScore3 +' '+ highScore4 +' '+ highScore5);
 	}
 	function instructions () {
 		if($instructions.hasClass('visibility')){
