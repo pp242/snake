@@ -1,4 +1,3 @@
-
 $(function () {
 
 	menu();
@@ -7,8 +6,6 @@ $(function () {
 	var $this = $(this);
 	var direction = 0; 
 	var wrongDirection = 0; 
-	var food;
-	var body;
 	var $food = $('.food');
 	var snake = $('.body');
 	var score = 0;
@@ -19,7 +16,8 @@ $(function () {
 	}
 	var $score = $('#score') 
  	var $screen = $('#screen')
-
+ 	var highScore = localStorage.getItem("highScore");
+ 	$score.text('s c o r e : ' + score + '. . . . . .h i g h s c o r e : ' + highScore);
 	var screenX = $screen.offset().left ;
 	var screenY = $screen.offset().top ;
 	var snakeX = $head.eq(0).position().left + screenX;
@@ -27,8 +25,6 @@ $(function () {
 	var snake1x = $('.nextThing')
     var snake1y = $('.nextThing')
 	clearInterval(movement);
-
- 
 
 	function menu () {
 		var menuChoice = prompt('What do you want?\nPlay Snake - 1\nSettings - 2\nQuit - No need to press a button, just walk away man');
@@ -132,16 +128,9 @@ $(function () {
 			var headY = $head.eq(0).position().top ;
 			
 			moveBody(headX, headY);
-			die();
+			dyingIntoWall();
 			eaten();
-			hitBody();
-
-			
-				
-
 		}, 100);
-
-
 	}
 	createFood();
 
@@ -187,7 +176,7 @@ $(function () {
 		}
 	}
 	function dead () {
-		var score = 0;
+		score = 0;
 		$head.eq(0).css({top: '200px', left: '200px'});
 		clearInterval(movement);
 		$('.nextThing').remove();
@@ -218,16 +207,16 @@ $(function () {
   		
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
-  			
-  			var highScore = localStorage.getItem("highscore");
+
+  			var highScore = localStorage.getItem("highScore");
 
 			if(highScore !== null){
 			    if (score > highScore) {
-			        localStorage.setItem("highscore", score);      
+			        localStorage.setItem("highScore", score);      
 			    }
 			}
 			else{
-			    localStorage.setItem("highscore", score);
+			    localStorage.setItem("highScore", score);
 			}
 
   			if(score>highScore){
@@ -242,21 +231,36 @@ $(function () {
 			});
 
       		$head.eq(0).after($newBodyElement);
+      		var randomColor = getRandomColor();
+			$newBodyElement.css({
+				backgroundColor: randomColor
+			});
    			var snake1x = snakeX;
       		var snake1y = snakeY;
     	}
 	}
-	function die() {
+	function dyingIntoWall() {
 		var headX = $head.eq(0).position().left ;
 		var headY = $head.eq(0).position().top ;
 		if(headX <= -20 || headY >= 400 || headY <= 0 || headX >= 600){
-			var score = 0;
-			$head.eq(0).css({top: '100px', left: '100px'});
-			clearInterval(movement);
-			$('.nextThing').remove();
-			menu();
+			dead();
 		}	
 	}
+	
+	var randomColor = getRandomColor();
+	$(this).css({
+		backgroundColor: randomColor
+	});
+		
+
+		
+	function getRandomColor() {
+		var letters = '0123456789ABCDEF';
+		var color = '#';
+			for (var i = 0; i < 6; i++) {
+		    	color += letters[Math.floor(Math.random() * 16)];
+		  	}return color;
+		}
 });
 
 

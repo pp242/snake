@@ -47,7 +47,7 @@ body{
 	height: 20px;
 	width: 20px;
 	display: inline-block;
-	border-radius: 50%;
+	border-radius: 20%;
 	z-index: 10;
 
 	overflow: hidden;
@@ -75,15 +75,16 @@ body{
 #head{
 	position: absolute;
 
-	background-color: brown;
+	background-color: #A420A7;
 	height: 20px;
 	width: 20px;
 	top: 200px;
 	left: 200px;
 	z-index: 10;
-	border-radius: 0%;
+	border-radius: 20%;
 	overflow: hidden;
 }
+
 .snake-element {
 	background: black;
 	position: absolute;
