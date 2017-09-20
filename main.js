@@ -19,7 +19,8 @@ $(function () {
 	var $leaderboard = $('#leaderboard');
 	var $backToMenu = $('#backToMenu');
 	var $backToMenuI = $('#backToMenuI');
-	var $instructions = $('#instructions');
+	var $instructionsButton = $('#instructionsButton');
+	var $instructions = $('#instructions')
 	var score = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
@@ -58,17 +59,17 @@ $(function () {
 	 			background: 'transparent'
 	 		})
 	 	});	  
-		$instructions.click(function(event){
+		$instructionsButton.click(function(event){
 		 	instructions();
 		 	$menu.addClass('visibility');
 		});
-		$instructions.mouseover(function(event){
-	 		$instructions.css({
+		$instructionsButton.mouseover(function(event){
+	 		$instructionsButton.css({
 	 			background: getRandomColor
 	 		})  
 		});
-		$instructions.mouseleave(function(event){
-	 		$instructions.css({
+		$instructionsButton.mouseleave(function(event){
+	 		$instructionsButton.css({
 	 			background: 'transparent'
 	 		})   		
 		});
@@ -386,6 +387,16 @@ $(function () {
 	 		menu();
 	 		$leaderboard.addClass('visibility');
 		});
+		$backToMenu.mouseover(function(event){
+	 		$backToMenu.css({
+	 			background: getRandomColor
+	 		})  
+		});
+		$backToMenu.mouseleave(function(event){
+	 		$backToMenu.css({
+	 			background: 'transparent'
+	 		})
+	 	});
 	}
 	function instructions () {
 		if($instructions.hasClass('visibility')){
@@ -395,6 +406,16 @@ $(function () {
 	 		menu();
 	 		$instructions.addClass('visibility');
 		});
+		$backToMenuI.mouseover(function(event){
+	 		$backToMenuI.css({
+	 			background: getRandomColor
+	 		})  
+		});
+		$backToMenuI.mouseleave(function(event){
+	 		$backToMenuI.css({
+	 			background: 'transparent'
+	 		})
+	 	});
 	}
 });
 

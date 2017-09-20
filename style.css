@@ -60,6 +60,7 @@ body{
 	width: 600px;
 	border-radius: 5%;
 	border-style:  solid;
+	overflow: hidden;
 }
 
 .visibility{
