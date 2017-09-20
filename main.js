@@ -1,41 +1,112 @@
 $(function () {
 
-	menu();
-
+	
+	var $menu = $('#menu')
 	var $head = $('#head');
 	var $this = $(this);
-	var direction = 0; 
-	var wrongDirection = 0; 
-	var $food = $('.food');
+	var $score = $('#score') 
+ 	var $screen = $('#screen')
+	var	snake1x = $('.nextThing')
+    var snake1y = $('.nextThing')
+    var $food = $('.food');
 	var snake = $('.body');
+	var $playGame = $('#playGame');
+	var $leaderboard = $('#leaderboard');
+	var $credits = $('#credits');
+	var $settings = $('#settings');
+	var $menuButton = $('#menuButton');
+	var $result = $('#result');
 	var score = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
 		x : 0 ,
 		y : 0
 	}
-	var $score = $('#score') 
- 	var $screen = $('#screen')
+	var direction = 0; 
+	var wrongDirection = 0; 
  	var highScore = localStorage.getItem("highScore");
  	$score.text('s c o r e : ' + score + '. . . . . .h i g h s c o r e : ' + highScore);
 	var screenX = $screen.offset().left ;
 	var screenY = $screen.offset().top ;
 	var snakeX = $head.eq(0).position().left + screenX;
 	var snakeY = $head.eq(0).position().top + screenY;
-	var snake1x = $('.nextThing')
-    var snake1y = $('.nextThing')
+	menu();
 	clearInterval(movement);
-
+	
 	function menu () {
-		var menuChoice = prompt('What do you want?\nPlay Snake - 1\nSettings - 2\nQuit - No need to press a button, just walk away man');
-		if(menuChoice == 1){
-			score = 0;
-			playGame();
-		}else if(menuChoice == 2){
-			//settings() not a function yet
-		}else{
-			///quit();
-		}
+		// var menuChoice = prompt('What do you want?\nPlay Snake - 1\nSettings - 2\nQuit - No need to press a button, just walk away man');
+		// if(menuChoice == 1){
+		// 	score = 0;
+		// 	playGame();
+		// }else if(menuChoice == 2){
+		// 	//settings() not a function yet
+		// }else{
+		// 	///quit();
+		// }
+		if($menu.hasClass('visibility')){
+			$menu.removeClass('visibility');
+		 }
+		$playGame.click(function(event){
+		 		playGame();
+		 		console.log('working');
+		 		$menu.addClass('visibility');
+		});
+		$playGame.mouseover(function(event){
+		 		$playGame.css({
+		 			background: getRandomColor
+		 		})  
+		});
+		$playGame.mouseleave(function(event){
+		 		$playGame.css({
+		 			background: 'transparent'
+		 		})  
+		});
+		$leaderboard.click(function(event){
+		 		playGame();
+		 		console.log('working');
+		 		$menu.addClass('visibility');
+		});
+		$leaderboard.mouseover(function(event){
+		 		$leaderboard.css({
+		 			background: getRandomColor
+		 		})  
+		});
+		$leaderboard.mouseleave(function(event){
+		 		$leaderboard.css({
+		 			background: 'transparent'
+		 		})  
+		});
+		$settings.click(function(event){
+		 		playGame();
+		 		console.log('working');
+		 		$menu.addClass('visibility')
+		});
+		$settings.mouseover(function(event){
+		 		$settings.css({
+		 			background: getRandomColor
+		 		})  
+		});
+		$settings.mouseleave(function(event){
+		 		$settings.css({
+		 			background: 'transparent'
+		 		})  
+		});
+		$credits.click(function(event){
+		 		playGame();
+		 		console.log('working');
+		 		$menu.addClass('visibility');
+		});
+		$credits.mouseover(function(event){
+		 		$credits.css({
+		 			background: getRandomColor
+		 		})  
+		});
+		$credits.mouseleave(function(event){
+		 		$credits.css({
+		 			background: 'transparent'
+		 		})  
+		});
+		//$menu.addClass('visibility')
 	}
 
 	function playGame () {
@@ -209,10 +280,22 @@ $(function () {
   			score++;
 
   			var highScore = localStorage.getItem("highScore");
+  			var highScore2 = localStorage.getItem("highScore2");
+  			var highScore3 = localStorage.getItem("highScore3");
+  			var highScore4 = localStorage.getItem("highScore4");
+  			var highScore5 = localStorage.getItem("highScore5");
 
 			if(highScore !== null){
 			    if (score > highScore) {
 			        localStorage.setItem("highScore", score);      
+			    }else if(highScore > score || score >= highScore2){
+			    	localStorage.setItem("highScore2", score);
+			    }else if(highScore2 > score || score >= highScore3){
+			    	localStorage.setItem("highScore3", score);
+			    }else if(highScore3 > score || score >= highScore4){
+			    	localStorage.setItem("highScore4", score);
+			    }else if(highScore4 > score || score >= highScore5){
+			    	localStorage.setItem("highScore5", score);
 			    }
 			}
 			else{
@@ -222,6 +305,7 @@ $(function () {
   			if(score>highScore){
   				highScore = score;
   			}
+
   			$score.text('s c o r e : ' + score + '. . . . . .h i g h s c o r e : ' + highScore);
 			foodcoordinates.x = (Math.floor(Math.random()*29)*20) + screenX;
       		foodcoordinates.y = (Math.floor((Math.random()*18)+2)*20) + screenY;
