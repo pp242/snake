@@ -11,7 +11,7 @@ $(function () {
     var $food = $('.food');
 	var snake = $('.body');
 	var $playGame = $('#playGame');
-	var $leaderboard = $('#leaderboard');
+	var $leaderboardButton = $('#leaderboardButton');
 	var $credits = $('#credits');
 	var $settings = $('#settings');
 	var $menuButton = $('#menuButton');
@@ -45,7 +45,7 @@ $(function () {
 		// }
 		if($menu.hasClass('visibility')){
 			$menu.removeClass('visibility');
-		 }
+		}
 		$playGame.click(function(event){
 		 		playGame();
 		 		console.log('working');
@@ -61,24 +61,22 @@ $(function () {
 		 			background: 'transparent'
 		 		})  
 		});
-		$leaderboard.click(function(event){
-		 		playGame();
-		 		console.log('working');
+		$leaderboardButton.click(function(event){
+		 		
 		 		$menu.addClass('visibility');
 		});
-		$leaderboard.mouseover(function(event){
-		 		$leaderboard.css({
+		$leaderboardButton.mouseover(function(event){
+		 		$leaderboardButton.css({
 		 			background: getRandomColor
 		 		})  
 		});
-		$leaderboard.mouseleave(function(event){
-		 		$leaderboard.css({
+		$leaderboardButton.mouseleave(function(event){
+		 		$leaderboardButton.css({
 		 			background: 'transparent'
 		 		})  
 		});
 		$settings.click(function(event){
-		 		playGame();
-		 		console.log('working');
+		 		
 		 		$menu.addClass('visibility')
 		});
 		$settings.mouseover(function(event){
@@ -92,8 +90,7 @@ $(function () {
 		 		})  
 		});
 		$credits.click(function(event){
-		 		playGame();
-		 		console.log('working');
+		 		
 		 		$menu.addClass('visibility');
 		});
 		$credits.mouseover(function(event){

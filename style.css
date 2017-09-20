@@ -49,7 +49,7 @@ body{
 	overflow: hidden;
 }
 
-#menu{
+.backgroundScreen{
 	z-index: 5;
 	position: absolute;
 	top: 170px;
@@ -115,7 +115,7 @@ body{
 	border-radius: 40%;
 }
 
-#title{
+.title{
 	border-style:  solid;
 	background: transparent;
 	font-family: myFirstFont;
@@ -123,52 +123,33 @@ body{
 	font-size: 80px;
 	height: 100px
 	width: 400px;
-	margin: 20px ;
+	margin: 15px ;
 }
 
-#playGame{
+.menuButton{
 	border-style:  solid;
 	background: transparent;
 	font-family: myFirstFont;
 	text-align:center;
-	font-size: 40px;
-	height: 50px
+	font-size: 30px;
+	height: 40px ;
 	width: 400px;
-	margin: 20px;
+	margin: 15px auto;
+	color: black;
 }
-#leaderboard{
+
+
+#backToMenu{
 	border-style:  solid;
 	background: transparent;
 	font-family: myFirstFont;
 	text-align:center;
-	font-size: 40px;
-	height: 50px
-	width: 400px;
-	margin: 20px;
+	font-size: 15px;
+	height: 20px ;
+	width: 40px;
+	margin: 0 auto;
+	color: black;
 }
-#settings{
-	border-style:  solid;
-	background: transparent;
-	font-family: myFirstFont;
-	text-align:center;
-	font-size: 40px;
-	height: 50px
-	width: 400px;
-	margin: 20px;
-}
-#credits{
-	border-style:  solid;
-	background: transparent;
-	font-family: myFirstFont;
-	text-align:center;
-	font-size: 40px;
-	height: 50px
-	width: 400px;
-	margin: 20px;
-}
-
-
-
 
 
 
