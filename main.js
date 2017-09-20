@@ -246,12 +246,12 @@ $(function () {
 		
 		var $theSnake = $('.snake-element');
 		var $theOldSnake = $('.snake-element').clone();
-
+		
 		if ($theSnake.length) {
 
 			var prevX = x;
 			var prevY = y;
-			var $oldBodyElement = null
+			var $oldBodyElement = null;
 			
 			$theSnake.each(function (i, $currentBlock) {
 				
@@ -261,20 +261,25 @@ $(function () {
 					
 					prevX = $theOldSnake.eq(index).css('left');
 					prevY = $theOldSnake.eq(index).css('top');
-					console.log('head x ' + $head.eq(0).position().left + ' pasa ' + prevX)
-					console.log(' head y:' + $head.eq(0).position().top + ' pskdp ' + prevY)
-					var nameX = $head.eq(0).position().left + 'px'
-					var nameY = $head.eq(0).position().top + 'px'
-					if(prevX == nameX &&  prevY == nameY){
-						dead();
-					}
+					var nameX = $head.eq(0).position().left + 'px' ;
+					var nameY = $head.eq(0).position().top + 'px' ;
+					console.log($theOldSnake.eq(0));
+					
+					if($theOldSnake.eq(index).hasClass('nextThing')){
+						//debugger
+					
+						console.log('prev x ' + prevX + ' name x ' + nameX)
+						console.log(' prev y:' + prevY + ' name y ' + nameY)
+						if(prevX == nameX &&  prevY == nameY){
+							dead();
+						}
 
-					$theSnake.eq(i).css({
+					}$theSnake.eq(i).css({
 						top: prevY,
 						left: prevX 
 					});
+					
 				}
-
 			
 			});
 
