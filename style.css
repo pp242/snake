@@ -164,7 +164,18 @@ body{
 	color: black;
 }
 
-
+.button{
+	border-style:  solid;
+	background: transparent;
+	font-family: myFirstFont;
+	text-align:center;
+	font-size: 30px;
+	height: 40px ;
+	width: 100px;
+	margin: 20px auto;
+	color: black;
+	display: inline-block;
+}
 
 
 

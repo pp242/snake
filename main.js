@@ -19,6 +19,7 @@ $(function () {
 	var $leaderboard = $('#leaderboard');
 	var $backToMenu = $('#backToMenu');
 	var $backToMenuI = $('#backToMenuI');
+	var $backToMenuD = $('#backToMenuD');
 	var $instructionsButton = $('#instructionsButton');
 	var $instructions = $('#instructions');
 	var $highScore = $('#highScore');
@@ -26,7 +27,10 @@ $(function () {
 	var $highScore3 = $('#highScore3');
 	var $highScore4 = $('#highScore4');
 	var $highScore5 = $('#highScore5');
-	var $deathScreen = $('#deathScreen');
+	var $deadScreen = $('#deadScreen');
+	var $deathScore = $('#deathScore');
+	var $settings = $('settings');
+
 	var score = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
@@ -47,6 +51,7 @@ $(function () {
 	function menu () {
 		$instructions.addClass('visibility');
 		$leaderboard.addClass('visibility');
+		$deadScreen.addClass('visibility');
 
 		if($menu.hasClass('visibility')){
 			$menu.removeClass('visibility');
@@ -258,11 +263,12 @@ $(function () {
 		}
 	}
 	function dead () {
+		deadScreen();
 		score = 0;
 		$head.eq(0).css({top: '200px', left: '200px'});
 		clearInterval(movement);
 		$('.nextThing').remove();
-		menu();
+		
 	}
  
   	function createFood() {
@@ -435,13 +441,37 @@ $(function () {
 	 		})
 	 	});
 	}
-	function deathScreen () {
-		if($deathScreen.hasClass('visibility')){
-			$deathScreen.removeClass('visibility');
+	function deadScreen () {
+		$deathScore.text('Your Score is:  ' + score);
+		if($deadScreen.hasClass('visibility')){
+			$deadScreen.removeClass('visibility');
 		}
+
+
 		$backToMenuD.click(function(event){
 	 		menu();
-	 		$deathScreen.addClass('visibility');
+	 		$deadScreen.addClass('visibility');
+		});
+		$backToMenuD.mouseover(function(event){
+	 		$backToMenuD.css({
+	 			background: getRandomColor
+	 		})  
+		});
+		$backToMenuD.mouseleave(function(event){
+	 		$backToMenuD.css({
+	 			background: 'transparent'
+	 		})
+	 	});
+	}
+	function settings(){
+		if($settings.hasClass('visibility')){
+			$settings.removeClass('visibility');
+		}
+
+
+		$blackSnake.click(function(event){
+	 		menu();
+	 		$deadScreen.addClass('visibility');
 		});
 		$backToMenuD.mouseover(function(event){
 	 		$backToMenuD.css({
