@@ -27,6 +27,11 @@ $(function () {
 	var $highScore4 = $('highScore4');
 	var $highScore5 = $('highScore5');
 	var score = 0;
+	var highScore = 0;
+	var highScore2 = 0;
+	var highScore3 = 0;
+	var highScore4 = 0;
+	var highScore5 = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
 		x : 0 ,
@@ -239,13 +244,11 @@ $(function () {
 					prevY = $theOldSnake.eq(index).css('top');
 					var nameX = $head.eq(0).position().left + 'px' ;
 					var nameY = $head.eq(0).position().top + 'px' ;
-					console.log($theOldSnake.eq(0));
+					
 					
 					if($theOldSnake.eq(index).hasClass('nextThing')){
 						//debugger
 					
-						console.log('prev x ' + prevX + ' name x ' + nameX)
-						console.log(' prev y:' + prevY + ' name y ' + nameY)
 						if(prevX == nameX &&  prevY == nameY){
 							dead();
 						}
@@ -298,7 +301,7 @@ $(function () {
   			var highScore5 = localStorage.getItem("highScore5");
 
 			if(highScore !== null){
-			    if (score > highScore) {
+			    if (score >= highScore) {
 			        localStorage.setItem("highScore", score);      
 			    }else if(highScore > score || score >= highScore2){
 			    	localStorage.setItem("highScore2", score);
@@ -313,6 +316,8 @@ $(function () {
 			else{
 			    localStorage.setItem("highScore", score);
 			}
+			leaderboard();
+			console.log(highScore + highScore2 + ' '+ highScore3 + highScore4 + highScore4)
 
   			if(score>highScore){
   				highScore = score;
@@ -364,27 +369,32 @@ $(function () {
 		}
 		
 		$highScore.mouseover(function(event){
+	 		$highScore.text('h i g h s c o r e : ' + highScore);
 	 		$playGame.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore2.mouseover(function(event){
-	 		$playGame.css({
+	 		$highScore2.text('second highscore : ' + highScore2);
+	 		$highScore2.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore3.mouseover(function(event){
-	 		$playGame.css({
+	 		$highScore3.text('third highscore : ' + highScore3);
+	 		$highScore3.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore4.mouseover(function(event){
-	 		$playGame.css({
+	 		$highScore4.text('fourth highscore : ' + highScore4);
+	 		$highScore4.css({
 	 			background: getRandomColor
 	 		})  
 		});
 		$highScore5.mouseover(function(event){
-	 		$playGame.css({
+	 		$highScore5.text('fifth highscore : ' + highScore5);
+	 		$highScore5.css({
 	 			background: getRandomColor
 	 		})  
 		});
