@@ -170,9 +170,9 @@ body{
 	font-family: myFirstFont;
 	text-align:center;
 	font-size: 30px;
-	height: 40px ;
-	width: 100px;
-	margin: 20px auto;
+	height: 70px ;
+	width: 200px;
+	margin: 30px auto;
 	color: black;
 	display: inline-block;
 }

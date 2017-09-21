@@ -29,8 +29,12 @@ $(function () {
 	var $highScore5 = $('#highScore5');
 	var $deadScreen = $('#deadScreen');
 	var $deathScore = $('#deathScore');
-	var $settings = $('settings');
-
+	var $settingScreen = $('#settingScreen');
+	var $blackSnake = $('#blackSnake');
+	var $rainbowSnake = $('#rainbowSnake');
+	var $newBodyElement = $('<div class="nextThing snake-element"></div>');
+	var getSpeed ;
+	var getColour ;
 	var score = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
@@ -49,6 +53,7 @@ $(function () {
 	clearInterval(movement);
 	
 	function menu () {
+		$settingScreen.addClass('visibility');
 		$instructions.addClass('visibility');
 		$leaderboard.addClass('visibility');
 		$deadScreen.addClass('visibility');
@@ -99,6 +104,7 @@ $(function () {
 	 		})  
 		});
 		$settings.click(function(event){
+			settings();
 		 	$menu.addClass('visibility')
 		});
 		$settings.mouseover(function(event){
@@ -131,6 +137,13 @@ $(function () {
 		////.css -- for no animation
 		/// addd elemenet to head for and delete end
 		//// had a head element and body changed it to just snakebody for ease 
+		if($rainbowSnake.hasClass('visibility')){
+			$blackSnake.removeClass('visibility')
+		}else if($blackSnake.hasClass('visibility')){
+			$rainbowSnake.removeClass('visibility')
+		}
+
+
 
 		createFood();
     	$(document).keydown(function(event){
@@ -219,7 +232,7 @@ $(function () {
 			moveBody(headX, headY);
 			dyingIntoWall();
 			eaten();
-		}, 100);
+		}, getSpeed);
 	}
 	createFood();
 
@@ -324,10 +337,10 @@ $(function () {
   			$score.text('s c o r e : ' + score + '. . . . . .h i g h s c o r e : ' + highScore);
   			
   			$highScore.text('h i g h s c o r e : ' + highScore);
-			$highScore2.text('second highscore : ' + highScore2);
-			$highScore3.text('third highscore : ' + highScore3);
-			$highScore4.text('fourth highscore : ' + highScore4);
-			$highScore5.text('fifth highscore : ' + highScore5);
+			$highScore2.text('second highscore : ' + ++highScore2);
+			$highScore3.text('third highscore : ' + ++highScore3);
+			$highScore4.text('fourth highscore : ' + ++highScore4);
+			$highScore5.text('fifth highscore : ' + ++highScore5);
 
 
 
@@ -340,9 +353,17 @@ $(function () {
 
       		$head.eq(0).after($newBodyElement);
       		var randomColor = getRandomColor();
-			$newBodyElement.css({
+			if(getColour == 1){
+				$newBodyElement.css({
 				backgroundColor: randomColor
-			});
+				});
+			}else if(getColour == 2){
+				$newBodyElement.css({
+				backgroundColor: 'black'
+				});
+			}
+
+			
    			var snake1x = snakeX;
       		var snake1y = snakeY;
     	}
@@ -376,11 +397,16 @@ $(function () {
 		if($leaderboard.hasClass('visibility')){
 			$leaderboard.removeClass('visibility');
 		}
-		var highScore = localStorage.getItem("highScore");
+		highScore = localStorage.getItem("highScore");
 		highScore2 = localStorage.getItem("highScore2");
 		highScore3 = localStorage.getItem("highScore3");
 		highScore4 = localStorage.getItem("highScore4");
 		highScore5 = localStorage.getItem("highScore5");
+		$highScore.text('h i g h s c o r e : ' + highScore);
+		$highScore2.text('second highscore : ' + ++highScore2);
+		$highScore3.text('third highscore : ' + ++highScore3);
+		$highScore4.text('fourth highscore : ' + ++highScore4);
+		$highScore5.text('fifth highscore : ' + ++highScore5);
 		
 		$highScore.mouseover(function(event){
 	 		$highScore.css({
@@ -464,21 +490,31 @@ $(function () {
 	 	});
 	}
 	function settings(){
-		if($settings.hasClass('visibility')){
-			$settings.removeClass('visibility');
+		if($settingScreen.hasClass('visibility')){
+			$settingScreen.removeClass('visibility');
 		}
 
 
 		$blackSnake.click(function(event){
+	 		getColour = 2;
+			$blackSnake.toggleClass('visibility');
+			$rainbowSnake.toggleClass('visibility');
+	 		$settingScreen.addClass('visibility');
 	 		menu();
-	 		$deadScreen.addClass('visibility');
 		});
-		$backToMenuD.mouseover(function(event){
+		$rainbowSnake.click(function(event){
+	 		getColour = 1;
+			$blackSnake.toggleClass('visibility');
+			$rainbowSnake.toggleClass('visibility');
+	 		$settingScreen.addClass('visibility');
+	 		menu();
+		});
+		$backToMenuS.mouseover(function(event){
 	 		$backToMenuD.css({
-	 			background: getRandomColor
+	 			background: randomColor
 	 		})  
 		});
-		$backToMenuD.mouseleave(function(event){
+		$backToMenuS.mouseleave(function(event){
 	 		$backToMenuD.css({
 	 			background: 'transparent'
 	 		})
