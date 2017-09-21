@@ -1,10 +1,10 @@
 #phone{
 	/*background-image: url('images/style.jpeg');*/
 	overflow: hidden;
-	/*margin: 0 auto;*/
+	/*margin: 0 auto id for the phone*/     
 }
 
-#screen{
+#screen{						/*the css for the screen the snake is played on*/
 	position: absolute;
 	top: 200px;
 	left: 107px;
@@ -17,9 +17,6 @@
 
 
 }
-img{
-	float: middle;
-}
 
 .park{
 	height: 1000px;
@@ -27,28 +24,15 @@ img{
 	z-index: 0.5;
 }
 
-@font-face{
+@font-face{						/*downloaded a new font for the text of the game, didnt like any from css, it goes by the name myFirstFont so if seen thisis the font*/
 	font-family: myFirstFont;
 	src :url(images/bad-mofo/BadMofo.ttf);
 }
-body{
+body{ /*stops the page from scrolling which was an issue when pushing the direction keys*/
 	overflow: hidden;
 
 }
-
-.stop-scrolling {
-  height: 100%;
-  
-}
-
-.snakeBody{
-	background-color: black;
-	height: 20px;
-	width: 20px;
-}
-
-
-.nextThing{
+.nextThing{			/*body elements for the snake body, this is a weird name*/
 	
 	background-color: black;
 	height: 20px;
@@ -60,13 +44,13 @@ body{
 	overflow: hidden;
 }
 
-.backgroundScreen{
+.backgroundScreen{			/*the class for all but one background screen, */
 	z-index: 5;
 	position: absolute;
 	top: 170px;
 	left: 107px;
 	margin: 0 auto;
-	background: radial-gradient(circle,#bdf407, #9AC503, #88B511);
+	background: radial-gradient(circle,#bdf407, #9AC503, #88B511); /*to it to look like the phone looks like its on*/
 	height: 450px;
 	width: 600px;
 	border-radius: 5%;
@@ -75,14 +59,14 @@ body{
 	text-align: center;
 }
 
-.visibility{
+.visibility{			/*class to hide a element, used alot for the buttons and the background screens*/
 	visibility: hidden;
 }
 
 
 
 
-#score{
+#score{					/*the styling for the score bar and highscore*/
 	position: absolute;
 	z-index: 4;
 	top: -30px;
@@ -98,7 +82,7 @@ body{
 
 
 
-#head{
+#head{			/*the css for the div of the head*/
 	position: absolute;
 
 	background-color: black;
@@ -111,13 +95,13 @@ body{
 	overflow: hidden;
 }
 
-.snake-element {
+.snake-element {		/*body elements for the snake body, i had 2 classes for it because it didnt work*/
 	background: black;
 	position: absolute;
 }
 
 
-.food{
+.food{					/*css for the food div */ 
 	height : 20px ; 
 	width : 20px ;
 	background-color: red ;
@@ -128,7 +112,7 @@ body{
 	border-radius: 40%;
 }
 
-.title{
+.title{				/*	class for the titles of the screens */
 	border-style:  solid;
 	background: transparent;
 	font-family: myFirstFont;
@@ -139,7 +123,7 @@ body{
 	margin: 15px ;
 }
 
-.menuButton{
+.menuButton{			/*design for all the menu buttons*/
 	border-style:  solid;
 	background: transparent;
 	font-family: myFirstFont;
@@ -152,7 +136,7 @@ body{
 }
 
 
-#actualInstructions{
+#actualInstructions{		/*the single design for the box that wholes all of the instructions*/
 	border-style:  solid;
 	background: transparent;
 	font-family: myFirstFont;
@@ -164,7 +148,7 @@ body{
 	color: black;
 }
 
-.button{
+.button{			/*design for the buttons on the settings page*/
 	border-style:  solid;
 	background: transparent;
 	font-family: myFirstFont;
@@ -178,7 +162,7 @@ body{
 	display: inline-block;
 }
 
-.thanking{
+.thanking{		/*had to create a seperate class for the thanking everyoen bacause the menu button box was too small*/
 	border-style:  solid;
 	background: transparent;
 	font-family: myFirstFont;

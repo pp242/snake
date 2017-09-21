@@ -2,28 +2,25 @@
 <html>
 <head>
 	<title>Snake</title>
-	<link rel = "stylesheet" type = "text/css" href = "style.css">
+	<link rel = "stylesheet" type = "text/css" href = "style.css"> <!-- link to css of html -->
 	<style>
 		body{
 			background-image: url("images/Winding-Road-through-City-Park/1986.jpg");
-			height: 800px;
-			width: 1000px;
+						/*this adds the background image of the park*/
 		}
 	</style>
-
-
 </head>
 <body>
-	<audio autoplay loop class='backgroundMusic'>
+	<audio autoplay loop class='backgroundMusic'> <!-- this are the audio functions for the game, they are called in the js folder, the background song is on loop -->
 		<source src="background.wav">
 	</audio>
-	<audio autoplay class='dieMusic'>
+	<audio autoplay class='dieMusic'>		<!-- the die tune -->
 		<source src="dead.wav">
 	</audio>
-	<audio autoplay class='voice'>
+	<audio autoplay class='voice'>			<!-- the game over voice when you die -->
 		<source src="voice.wav">
 	</audio>
-	<audio autoplay class='food'>
+	<audio autoplay class='food'> <!-- whenever food is eaten this sound should play -->
 		<source src="food.wav">
 	</audio>
 
@@ -31,61 +28,57 @@
 
 	<div id='background' width='1500' height='1400'>
 		<div id = 'phone'>
-		<img src="images/style.jpeg" width="800" height="1400" align="middle">
-			<div id = 'screen'>
-				
-
+		<img src="images/style.jpeg" width="800" height="1400" align="middle">		<!-- this is the phone image -->
+			<div id = 'screen'> <!-- the first background screen, not linked to the class background screen because i wanted it smaller -->
 				<div id = 'head' class="snake-element" ></div>.  <!-- got rid of class='body' -->
 				
 				<!-- <div class = 'nextThing'></div> -->
-				<div class = 'food'></div>
-				<div id='score'>s c o r e : 0 . . . . . . . h i g h s c o r e : 0</div>
-				
-
+				<div class = 'food'></div> <!-- the div for the food -->
+				<div id='score'>s c o r e : 0 . . . . . . . h i g h s c o r e : 0</div>   <!-- the score div so we can read the score -->
 			</div>
-			<div id = 'menu' class="backgroundScreen">
-				<div id='mainTitle' class="title">S N A K E</div>
-				<div id='playGame' class="menuButton"> Start!</div>
-				<div id='instructionsButton' class="menuButton">Instructions</div>
-				<div id="leaderboardButton" class="menuButton">Leaderboard</div>
-				<div id='settings' class="menuButton">Settings</div>
-				<div id='creditsButton' class="menuButton">Credits</div>
+			<div id = 'menu' class="backgroundScreen"> <!-- background for the menu -->
+				<div id='mainTitle' class="title">S N A K E</div> <!-- title -->
+				<div id='playGame' class="menuButton"> Start!</div> <!-- take you to the game -->
+				<div id='instructionsButton' class="menuButton">Instructions</div> <!-- takes you to the instructions -->
+				<div id="leaderboardButton" class="menuButton">Leaderboard</div> <!-- takes you to the leaderboard -->
+				<div id='settings' class="menuButton">Settings</div> <!-- takes you to settings screen -->
+				<div id='creditsButton' class="menuButton">Credits</div> <!-- takes you to credit screen -->
 			</div>
-			<div id='deadScreen' class='backgroundScreen'>
-				<div id='result' class="title">You Died!</div>
-				<div id='deathScore' class="title">Your score is: ></div>
-				<img class='snakeimage' src="images/snake.png" width="150" height="150" align="center">
-				<div id='backToMenuD' class="menuButton">Back to the Menu</div>
+			<div id='deadScreen' class='backgroundScreen'> <!-- background for dead screen -->
+				<div id='result' class="title">You Died!</div> <!-- title for results page -->
+				<div id='deathScore' class="title">Your score is: ></div> <!-- the score for you  -->
+				<img class='snakeimage' src="images/snake.png" width="150" height="150" align="center"> <!-- gets an image of sammie the snake -->
+				<div id='backToMenuD' class="menuButton">Back to the Menu</div> <!-- goes to menu -->
 			</div>
-			<div id='leaderboard' class='backgroundScreen'>
+			<div id='leaderboard' class='backgroundScreen'>  <!-- leaderboard page -->
 				<div id='leaderboardTitle' class="title">Leaderboard</div>
 				<div id='highScore' class="menuButton">p</div>
-				<div id='highScore2' class="menuButton">p</div>
+				<div id='highScore2' class="menuButton">p</div>		<!-- all the highscores are recorded in the divs -->
 				<div id='highScore3' class="menuButton">p</div>
 				<div id='highScore4' class="menuButton">p</div>
 				<div id='highScore5' class="menuButton">p</div>
-				<div id='backToMenu' class="menuButton"> Click here to go back to menu</div>
+				<div id='backToMenu' class="menuButton"> Click here to go back to menu</div><!-- goes to menu -->
 			</div>
-			<div id="instructions" class="backgroundScreen">
+			<div id="instructions" class="backgroundScreen"> <!-- background for instructions page -->
 				<div id='instructionsTitle' class='title'>Instructions</div>
-				<div id='actualInstructions'>You have been sent back to the year 1997, where netflix does not exist and donald trump is not president. The only way now to kill time is to play on your brand new nokia 3310 and the original mobile game: SNAKE. The aim of the game is to get your snake to eat as much food as you can without the snake hitting any of the walls or itself. Everytime you eat you get bigger. To play all you have to go is press the direction arrows to direct the snake. </div>
-				<div id='backToMenuI' class='menuButton'> Back to the Menu</div>
+				<div id='actualInstructions'>You have been sent back to the year 1997, where netflix does not exist and donald trump is not president. The only way now to kill time is to play on your brand new nokia 3310 and the original mobile game: SNAKE. The aim of the game is to get your snake to eat as much food as you can without the snake hitting any of the walls or itself. Everytime you eat you get bigger. To play all you have to go is press the direction arrows to direct the snake. </div> <!-- text for the instructions --> 
+				<div id='backToMenuI' class='menuButton'> Back to the Menu</div><!-- goes to menu -->
 				
 			</div>
-			<div id='settingScreen' class="backgroundScreen" >
+			<div id='settingScreen' class="backgroundScreen" > <!-- background for setting page -->
 				<div id="blackSnake" class="button">Classic Snake</div>
-				<div id="rainbowSnake" class="button">MultiColour Snake</div>
+				<div id="rainbowSnake" class="button">MultiColour Snake</div>  <!-- the buttons for the different task that they have the id for -->
 				<div id="slow" class="button">Slow</div>
 				<div id="normal" class="button">Normal</div>
 				<div id="fast" class="button">Fast</div>
 				<div id="insane" class="button">Insane</div>
-				<div id="backToMenuS" class="menuButton">Back to Menu</div>
+				<div id="backToMenuS" class="menuButton">Back to Menu</div><!-- goes to menu -->
 			</div>
-			<div id="credits" class="backgroundScreen">
-				<div id='creditsTitle' class="title"> Credits</div>
+			<div id="credits" class="backgroundScreen"> <!-- background for the crdits page -->
+				<div id='creditsTitle' class="title"> Credits</div> <!-- title -->
 				<div class="title">by Priyam Patel</div>
 				<div class="thanking">Thanks to everyone that helped me></div>
-				<div id="backToMenuC" class="menuButton">Back to Menu</div>
+				<div id="backToMenuC" class="menuButton">Back to Menu</div><!-- goes to menu -->
 			</div>
 		</div>	
 	</div>
@@ -97,12 +90,12 @@
   	<br>
   	<button class = "butt" id = "buttonBottom">vvvv</button>
 
-
+<!-- these are buttons made to change the direction on the page, they were not implemenated but could be later on -->
 
 
 
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-	<script src="main.js"></script>
+	<script src="main.js"></script> <!-- this is the link for the javascript -->
 </body>
-</html>class="menuButton"
+</html>
