@@ -498,12 +498,10 @@ $(function () {
 		if($settingScreen.hasClass('visibility')){
 			$settingScreen.removeClass('visibility');
 		}
-
-
 		$blackSnake.click(function(event){
 	 		getColour = 2;
-			$blackSnake.toggleClass('visibility');
-			$rainbowSnake.toggleClass('visibility');
+			$blackSnake.removeClass('visibility');
+			$rainbowSnake.addClass('visibility');
 		});
 		$blackSnake.mouseover(function(event){
 	 		$blackSnake.css({
@@ -517,8 +515,8 @@ $(function () {
 	 	});
 		$rainbowSnake.click(function(event){
 	 		getColour = 1;
-			$blackSnake.toggleClass('visibility');
-			$rainbowSnake.toggleClass('visibility');
+			$blackSnake.addClass('visibility');
+			$rainbowSnake.removeClass('visibility');
 		});
 		$rainbowSnake.mouseover(function(event){
 	 		$rainbowSnake.css({
@@ -532,7 +530,7 @@ $(function () {
 	 	});
 		$fast.click(function(event){
 	 		getSpeed = 70;
-	 		$fast.toggleClass('visibility');
+	 		$fast.addClass('visibility');
 	 		if($normal.hasClass('visibility')){
 	 			$normal.removeClass('visibility');
 	 		}else if($slow.hasClass('visibility')){
@@ -551,7 +549,7 @@ $(function () {
 	 	});
 	 	$normal.click(function(event){
 	 		getSpeed = 100;
-	 		$normal.toggleClass('visibility');
+	 		$normal.addClass('visibility');
 	 		if($fast.hasClass('visibility')){
 	 			$fast.removeClass('visibility');
 	 		}else if($slow.hasClass('visibility')){
@@ -570,7 +568,7 @@ $(function () {
 	 	});
 	 	$slow.click(function(event){
 	 		getSpeed = 150;
-	 		$slow.toggleClass('visibility');
+	 		$slow.addClass('visibility');
 	 		if($fast.hasClass('visibility')){
 	 			$fast.removeClass('visibility');
 	 		}else if($normal.hasClass('visibility')){
