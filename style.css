@@ -173,13 +173,22 @@ body{
 	height: 70px ;
 	width: 200px;
 	margin: 10px auto;
+	margin-right: 20px;
 	color: black;
 	display: inline-block;
 }
 
-
-
-
+.thanking{
+	border-style:  solid;
+	background: transparent;
+	font-family: myFirstFont;
+	text-align:center;
+	font-size: 30px;
+	height: 80px ;
+	width: 400px;
+	margin: 10px auto;
+	color: black;
+}
 
 
 

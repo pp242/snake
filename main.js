@@ -12,7 +12,7 @@ $(function () {
 	var snake = $('.body');
 	var $playGame = $('#playGame');
 	var $leaderboardButton = $('#leaderboardButton');
-	var $credits = $('#credits');
+	var $creditsButton = $('#creditsButton');
 	var $settings = $('#settings');
 	var $menuButton = $('#menuButton');
 	var $result = $('#result');
@@ -34,9 +34,12 @@ $(function () {
 	var $rainbowSnake = $('#rainbowSnake');
 	var $newBodyElement = $('<div class="nextThing snake-element"></div>');
 	var $backToMenuS = $('#backToMenuS');
+	var $insane = $('#insane')
 	var $fast = $('#fast');
 	var $normal = $('#normal');
 	var $slow = $('#slow');
+	var $credits = $('#credits');
+	var $backToMenuC = $('#backToMenuC')
 	var getSpeed = 100;
 	var getColour = 1;
 	var score = 0;
@@ -55,14 +58,17 @@ $(function () {
 	var snakeY = $head.eq(0).position().top + screenY;
 	menu();
 	clearInterval(movement);
+	$rainbowSnake.addClass('visibility');
+	$normal.addClass('visibility');
 	
+
 	function menu () {
 		$settingScreen.addClass('visibility');
 		$instructions.addClass('visibility');
 		$leaderboard.addClass('visibility');
 		$deadScreen.addClass('visibility');
-		$rainbowSnake.addClass('visibility');
-		$normal.addClass('visibility');
+		$credits.addClass('visibility');
+		
 
 		if($menu.hasClass('visibility')){
 			$menu.removeClass('visibility');
@@ -123,16 +129,17 @@ $(function () {
 	 			background: 'transparent'
 	 		})  
 		});
-		$credits.click(function(event){
+		$creditsButton.click(function(event){
 		 	$menu.addClass('visibility');
+		 	credit();
 		});
-		$credits.mouseover(function(event){
-	 		$credits.css({
+		$creditsButton.mouseover(function(event){
+	 		$creditsButton.css({
 	 			background: getRandomColor
 	 		})  
 		});
-		$credits.mouseleave(function(event){
-	 		$credits.css({
+		$creditsButton.mouseleave(function(event){
+	 		$creditsButton.css({
 	 			background: 'transparent'
 	 		})  
 		});
@@ -500,8 +507,8 @@ $(function () {
 		}
 		$blackSnake.click(function(event){
 	 		getColour = 2;
-			$blackSnake.removeClass('visibility');
-			$rainbowSnake.addClass('visibility');
+			$blackSnake.addClass('visibility');
+			$rainbowSnake.removeClass('visibility');
 		});
 		$blackSnake.mouseover(function(event){
 	 		$blackSnake.css({
@@ -515,8 +522,8 @@ $(function () {
 	 	});
 		$rainbowSnake.click(function(event){
 	 		getColour = 1;
-			$blackSnake.addClass('visibility');
-			$rainbowSnake.removeClass('visibility');
+			$blackSnake.removeClass('visibility');
+			$rainbowSnake.addClass('visibility');
 		});
 		$rainbowSnake.mouseover(function(event){
 	 		$rainbowSnake.css({
@@ -535,6 +542,8 @@ $(function () {
 	 			$normal.removeClass('visibility');
 	 		}else if($slow.hasClass('visibility')){
 	 			$slow.removeClass('visibility');
+	 		}else if($insane.hasClass('visibility')){
+	 			$insane.removeClass('visibility');
 	 		}
 	 	});	
 		$fast.mouseover(function(event){
@@ -554,6 +563,8 @@ $(function () {
 	 			$fast.removeClass('visibility');
 	 		}else if($slow.hasClass('visibility')){
 	 			$slow.removeClass('visibility');
+	 		}else if($insane.hasClass('visibility')){
+	 			$insane.removeClass('visibility');
 	 		}
 	 	});	
 		$normal.mouseover(function(event){
@@ -573,6 +584,8 @@ $(function () {
 	 			$fast.removeClass('visibility');
 	 		}else if($normal.hasClass('visibility')){
 	 			$normal.removeClass('visibility');
+	 		}else if($insane.hasClass('visibility')){
+	 			$insane.removeClass('visibility');
 	 		}
 	 	});	
 		$slow.mouseover(function(event){
@@ -582,6 +595,27 @@ $(function () {
 		});
 		$slow.mouseleave(function(event){
 	 		$slow.css({
+	 			background: 'transparent'
+	 		})
+	 	});
+	 	$insane.click(function(event){
+	 		getSpeed = 40;
+	 		$insane.addClass('visibility');
+	 		if($fast.hasClass('visibility')){
+	 			$fast.removeClass('visibility');
+	 		}else if($normal.hasClass('visibility')){
+	 			$normal.removeClass('visibility');
+	 		}else if($slow.hasClass('visibility')){
+	 			$slow.removeClass('visibility');
+	 		}
+	 	});	
+		$insane.mouseover(function(event){
+	 		$insane.css({
+	 			background: randomColor
+	 		})  
+		});
+		$insane.mouseleave(function(event){
+	 		$insane.css({
 	 			background: 'transparent'
 	 		})
 	 	});
@@ -602,6 +636,25 @@ $(function () {
 	 			background: 'transparent'
 	 		})
 	 	});
+	}
+	function credit () {
+		if($credits.hasClass('visibility')){
+			$credits.removeClass('visibility');
+		}
+		$backToMenuC.click(function(event){
+	 		menu();
+	 	});	
+		$backToMenuC.mouseover(function(event){
+	 		$backToMenuC.css({
+	 			background: randomColor
+	 		})  
+		});
+		$backToMenuC.mouseleave(function(event){
+	 		$backToMenuC.css({
+	 			background: 'transparent'
+	 		})
+	 	});
+
 	}
 });
 
