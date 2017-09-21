@@ -17,6 +17,9 @@
 
 
 }
+img{
+	float: middle;
+}
 
 .park{
 	height: 1000px;
@@ -30,6 +33,7 @@
 }
 body{
 	overflow: hidden;
+
 }
 
 .stop-scrolling {
@@ -68,6 +72,7 @@ body{
 	border-radius: 5%;
 	border-style:  solid;
 	overflow: hidden;
+	text-align: center;
 }
 
 .visibility{
