@@ -139,19 +139,7 @@ body{
 	color: black;
 }
 
-/*
-#backToMenu{
-	border-style:  solid;
-	background: transparent;
-	font-family: myFirstFont;
-	text-align:center;
-	font-size: 15px;
-	height: 20px ;
-	width: 200px;
-	top: 40px;
-	margin: 0 auto;
-	color: black;
-}*/
+
 #actualInstructions{
 	border-style:  solid;
 	background: transparent;

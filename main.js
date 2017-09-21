@@ -39,7 +39,10 @@ $(function () {
 	var $normal = $('#normal');
 	var $slow = $('#slow');
 	var $credits = $('#credits');
-	var $backToMenuC = $('#backToMenuC')
+	var $backToMenuC = $('#backToMenuC');
+	var $backgroundMusic = $('.backgroundMusic');
+	var $dieMusic = $('.dieMusic');
+	var $dieBackground = $('.dieBackground');
 	var getSpeed = 100;
 	var getColour = 1;
 	var score = 0;
@@ -56,11 +59,20 @@ $(function () {
 	var screenY = $screen.offset().top ;
 	var snakeX = $head.eq(0).position().left + screenX;
 	var snakeY = $head.eq(0).position().top + screenY;
-	menu();
+	
 	clearInterval(movement);
+	
+
 	$rainbowSnake.addClass('visibility');
 	$normal.addClass('visibility');
-	
+	// $dieMusic.pause();
+	// $dieBackground.pause();
+	//$food.pause();
+	$('.voice')[0].pause();
+	$('.dieMusic')[0].pause();
+	$('.food')[0].pause();
+	menu();
+
 
 	function menu () {
 		$settingScreen.addClass('visibility');
@@ -68,7 +80,7 @@ $(function () {
 		$leaderboard.addClass('visibility');
 		$deadScreen.addClass('visibility');
 		$credits.addClass('visibility');
-		
+		//$dieBackground.pause();
 
 		if($menu.hasClass('visibility')){
 			$menu.removeClass('visibility');
@@ -150,12 +162,6 @@ $(function () {
 		////.css -- for no animation
 		/// addd elemenet to head for and delete end
 		//// had a head element and body changed it to just snakebody for ease 
-		
-		
-
-
-
-
 
 		createFood();
     	$(document).keydown(function(event){
@@ -314,13 +320,14 @@ $(function () {
   	}
 
   	function eaten() {
+  		
 	    var snakeX = $head.eq(0).position().left + screenX;
 		var snakeY = $head.eq(0).position().top + screenY;
 		var $newBodyElement = $('<div class="nextThing snake-element"></div>');
   		
   		if (foodcoordinates.x === snakeX && foodcoordinates.y === snakeY || foodcoordinates.y === snakeY && foodcoordinates.x ===snakeX) {
   			score++;
-
+			$('.food')[0].play();
   			var highScore = localStorage.getItem("highScore");
   			var highScore2 = localStorage.getItem("highScore2");
   			var highScore3 = localStorage.getItem("highScore3");
@@ -480,6 +487,12 @@ $(function () {
 	 	});
 	}
 	function deadScreen () {
+		
+		$('.dieMusic')[0].play();
+		setTimeout(function() {
+   			 $('.voice')[0].play();
+		}, 1000);
+		
 		$deathScore.text('Your Score is:  ' + score);
 		if($deadScreen.hasClass('visibility')){
 			$deadScreen.removeClass('visibility');
