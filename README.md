@@ -12,7 +12,13 @@ The languages used in the game are Javascript, CSS and HTML. The language that w
 
 # Installations
 
-To install download the zip folder of github
+To install:
+
+1. Click on the clone or download button.
+2. Click download .zip .
+3. In downloads in Finder/Folders unzip the folder.
+4. Open the unzipped folder.
+5. Open the Index.html in Chrome and enjoy.
 
 
 
