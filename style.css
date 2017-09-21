@@ -17,6 +17,13 @@
 
 
 }
+
+.park{
+	height: 1000px;
+	width: 1500px;
+	z-index: 0.5;
+}
+
 @font-face{
 	font-family: myFirstFont;
 	src :url(images/bad-mofo/BadMofo.ttf);
