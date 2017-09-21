@@ -33,8 +33,12 @@ $(function () {
 	var $blackSnake = $('#blackSnake');
 	var $rainbowSnake = $('#rainbowSnake');
 	var $newBodyElement = $('<div class="nextThing snake-element"></div>');
-	var getSpeed ;
-	var getColour ;
+	var $backToMenuS = $('#backToMenuS');
+	var $fast = $('#fast');
+	var $normal = $('#normal');
+	var $slow = $('#slow');
+	var getSpeed = 100;
+	var getColour = 1;
 	var score = 0;
 	var movement = setInterval(function() {});
 	var foodcoordinates = {
@@ -57,6 +61,8 @@ $(function () {
 		$instructions.addClass('visibility');
 		$leaderboard.addClass('visibility');
 		$deadScreen.addClass('visibility');
+		$rainbowSnake.addClass('visibility');
+		$normal.addClass('visibility');
 
 		if($menu.hasClass('visibility')){
 			$menu.removeClass('visibility');
@@ -137,11 +143,10 @@ $(function () {
 		////.css -- for no animation
 		/// addd elemenet to head for and delete end
 		//// had a head element and body changed it to just snakebody for ease 
-		if($rainbowSnake.hasClass('visibility')){
-			$blackSnake.removeClass('visibility')
-		}else if($blackSnake.hasClass('visibility')){
-			$rainbowSnake.removeClass('visibility')
-		}
+		
+		
+
+
 
 
 
@@ -403,10 +408,10 @@ $(function () {
 		highScore4 = localStorage.getItem("highScore4");
 		highScore5 = localStorage.getItem("highScore5");
 		$highScore.text('h i g h s c o r e : ' + highScore);
-		$highScore2.text('second highscore : ' + ++highScore2);
-		$highScore3.text('third highscore : ' + ++highScore3);
-		$highScore4.text('fourth highscore : ' + ++highScore4);
-		$highScore5.text('fifth highscore : ' + ++highScore5);
+		$highScore2.text('second highscore : ' + highScore2);
+		$highScore3.text('third highscore : ' + highScore3);
+		$highScore4.text('fourth highscore : ' + highScore4);
+		$highScore5.text('fifth highscore : ' + highScore5);
 		
 		$highScore.mouseover(function(event){
 	 		$highScore.css({
@@ -499,23 +504,103 @@ $(function () {
 	 		getColour = 2;
 			$blackSnake.toggleClass('visibility');
 			$rainbowSnake.toggleClass('visibility');
-	 		$settingScreen.addClass('visibility');
-	 		menu();
 		});
+		$blackSnake.mouseover(function(event){
+	 		$blackSnake.css({
+	 			background: randomColor
+	 		})  
+		});
+		$blackSnake.mouseleave(function(event){
+	 		$blackSnake.css({
+	 			background: 'transparent'
+	 		})
+	 	});
 		$rainbowSnake.click(function(event){
 	 		getColour = 1;
 			$blackSnake.toggleClass('visibility');
 			$rainbowSnake.toggleClass('visibility');
-	 		$settingScreen.addClass('visibility');
-	 		menu();
 		});
+		$rainbowSnake.mouseover(function(event){
+	 		$rainbowSnake.css({
+	 			background: randomColor
+	 		})  
+		});
+		$rainbowSnake.mouseleave(function(event){
+	 		$rainbowSnake.css({
+	 			background: 'transparent'
+	 		})
+	 	});
+		$fast.click(function(event){
+	 		getSpeed = 70;
+	 		$fast.toggleClass('visibility');
+	 		if($normal.hasClass('visibility')){
+	 			$normal.removeClass('visibility');
+	 		}else if($slow.hasClass('visibility')){
+	 			$slow.removeClass('visibility');
+	 		}
+	 	});	
+		$fast.mouseover(function(event){
+	 		$fast.css({
+	 			background: randomColor
+	 		})  
+		});
+		$fast.mouseleave(function(event){
+	 		$fast.css({
+	 			background: 'transparent'
+	 		})
+	 	});
+	 	$normal.click(function(event){
+	 		getSpeed = 100;
+	 		$normal.toggleClass('visibility');
+	 		if($fast.hasClass('visibility')){
+	 			$fast.removeClass('visibility');
+	 		}else if($slow.hasClass('visibility')){
+	 			$slow.removeClass('visibility');
+	 		}
+	 	});	
+		$normal.mouseover(function(event){
+	 		$normal.css({
+	 			background: randomColor
+	 		})  
+		});
+		$normal.mouseleave(function(event){
+	 		$normal.css({
+	 			background: 'transparent'
+	 		})
+	 	});
+	 	$slow.click(function(event){
+	 		getSpeed = 150;
+	 		$slow.toggleClass('visibility');
+	 		if($fast.hasClass('visibility')){
+	 			$fast.removeClass('visibility');
+	 		}else if($normal.hasClass('visibility')){
+	 			$normal.removeClass('visibility');
+	 		}
+	 	});	
+		$slow.mouseover(function(event){
+	 		$slow.css({
+	 			background: randomColor
+	 		})  
+		});
+		$slow.mouseleave(function(event){
+	 		$slow.css({
+	 			background: 'transparent'
+	 		})
+	 	});
+
+
+
+
+		$backToMenuS.click(function(event){
+	 		menu();
+	 	});	
 		$backToMenuS.mouseover(function(event){
-	 		$backToMenuD.css({
+	 		$backToMenuS.css({
 	 			background: randomColor
 	 		})  
 		});
 		$backToMenuS.mouseleave(function(event){
-	 		$backToMenuD.css({
+	 		$backToMenuS.css({
 	 			background: 'transparent'
 	 		})
 	 	});

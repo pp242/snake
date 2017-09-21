@@ -89,7 +89,7 @@ body{
 #head{
 	position: absolute;
 
-	background-color: #A420A7;
+	background-color: black;
 	height: 20px;
 	width: 20px;
 	top: 200px;
@@ -172,7 +172,7 @@ body{
 	font-size: 30px;
 	height: 70px ;
 	width: 200px;
-	margin: 30px auto;
+	margin: 10px auto;
 	color: black;
 	display: inline-block;
 }
