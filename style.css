@@ -1,6 +1,7 @@
-#phone{
+.phone{
 	/*background-image: url('images/style.jpeg');*/
 	overflow: hidden;
+	z-index: 3;
 	/*margin: 0 auto id for the phone*/     
 }
 
@@ -14,7 +15,8 @@
 	width: 600px;
 	border-radius: 5%;
 	border-style:  solid;
-
+	z-index: 2;
+	overflow: hidden;
 
 }
 
@@ -44,7 +46,7 @@ body{ /*stops the page from scrolling which was an issue when pushing the direct
 	width: 20px;
 	display: inline-block;
 	border-radius: 20%;
-	z-index: 2;
+	z-index: 1;
 
 	overflow: hidden;
 }
@@ -60,7 +62,7 @@ body{ /*stops the page from scrolling which was an issue when pushing the direct
 	width: 600px;
 	border-radius: 5%;
 	border-style:  solid;
-	overflow: hidden;
+	overflow: scroll;
 	text-align: center;
 }
 
@@ -74,7 +76,7 @@ body{ /*stops the page from scrolling which was an issue when pushing the direct
 #score{					/*the styling for the score bar and highscore*/
 	position: absolute;
 	z-index: 4;
-	top: -30px;
+	top: -10px;
 	left: -4px;
 	background: linear-gradient(to right, #88B511, #9AC503, #88B511);
 	height: 40px;
@@ -103,6 +105,8 @@ body{ /*stops the page from scrolling which was an issue when pushing the direct
 .snake-element {		/*body elements for the snake body, i had 2 classes for it because it didnt work*/
 	background: black;
 	position: absolute;
+	overflow: hidden;
+	z-index: 1;
 }
 
 
@@ -178,7 +182,16 @@ body{ /*stops the page from scrolling which was an issue when pushing the direct
 	margin: 10px auto;
 	color: black;
 }
-
+.fastFood{
+	height : 20px ; 
+	width : 20px ;
+	background-color: transparent;
+	z-index: 2 ;
+	position: relative;
+	top: 100px;
+	left: 100px;
+	border-radius: 40%;
+}
 
 
 

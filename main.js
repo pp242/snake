@@ -9,12 +9,12 @@ $(function () { /// had it in this because its good practice
 	var	snake1x = $('.nextThing')
     var snake1y = $('.nextThing')
     var $food = $('.food');
+    var $fastFoodButton = $('#fastFoodButton');
 	var snake = $('.body');
 	var $playGame = $('#playGame');
 	var $leaderboardButton = $('#leaderboardButton');
 	var $creditsButton = $('#creditsButton');
 	var $settings = $('#settings');
-	var $settings2 = $('#settings2');
 	var $menuButton = $('#menuButton');
 	var $result = $('#result');
 	var $leaderboard = $('#leaderboard');
@@ -41,16 +41,23 @@ $(function () { /// had it in this because its good practice
 	var $slow = $('#slow');
 	var $credits = $('#credits');
 	var $backToMenuC = $('#backToMenuC');
-	var $backToMenuS2 = $("#backToMenuS2")
-	var $settingScreen2 = $('#settingScreen2')
+	var $wallBarriersOn = $('#wallBarriersOn');
+	var $wallBarriersOff = $('#wallBarriersOff');
+	var $fastFood = $('#fastFood');
 	var $backgroundMusic = $('.backgroundMusic');
 	var $dieMusic = $('.dieMusic');
 	var $dieBackground = $('.dieBackground');
 	var getSpeed = 100;					//declaration for the speed of the intervals of each movement of the head of the snake
 	var getColour = 1;					//declaration for the colour of the snakes body, 1 for rainbow, 2 black	
 	var score = 0;						/// gives a score of zero before game starts
+	var barriers = 1;
+	var fastFoodNumber = 0;
 	var movement = setInterval(function() {});			///set the variable
 	var foodcoordinates = {							/// declare the foodcoordinates so they start from somewhere
+		x : 0 ,
+		y : 0
+	}
+	var fastFoodCoordinates = {							/// declare the fastfoodcoordinates so they start from somewhere
 		x : 0 ,
 		y : 0
 	}
@@ -68,6 +75,7 @@ $(function () { /// had it in this because its good practice
 
 	$rainbowSnake.addClass('opacity');			//for the settings it hides the buttons that are currently pressed so you know what the current settings are
 	$normal.addClass('opacity');
+	$wallBarriersOn.addClass('opacity');
 	// $dieMusic.pause();
 	// $dieBackground.pause();
 	//$food.pause();
@@ -83,9 +91,9 @@ $(function () { /// had it in this because its good practice
 		$leaderboard.addClass('visibility');
 		$deadScreen.addClass('visibility');
 		$credits.addClass('visibility');			//this hide the screens that we are not on currently
-		$settingScreen2.addClass('visibility');
 		//$dieBackground.pause();
 		score = 0;   //redeclare score equals zero so that the score get deleted when you die
+		wrongDirection = 0;
 		visible($menu)		//// checks if menu is visible if not gets rid of it
 		
 		$playGame.click(function(event){		/// click function to start the function playgame which plays the game
@@ -106,17 +114,13 @@ $(function () { /// had it in this because its good practice
 		});
 		
 		buttonColor($leaderboardButton);
+
 		$settings.click(function(event){
 			settings();						/// takes to setting screen
 		 	$menu.addClass('visibility')
 		});
-		buttonColor($settings2);
-		$settings2.click(function(event){
-			settingsMore();						/// takes to setting screen 2
-		 	$menu.addClass('visibility')
-		});
-
 		buttonColor($settings);
+		
 		$creditsButton.click(function(event){
 		 	$menu.addClass('visibility');
 		 	credit();							/// takes to credit screen
@@ -214,9 +218,16 @@ $(function () { /// had it in this because its good practice
 		    } 
 		    var headX = $head.eq(0).position().left ;
 			var headY = $head.eq(0).position().top ;		///gives coordinates of the position of the head to the screen div
-			
+			if (fastFoodNumber == 1) {
+				createFastFood();
+				fastFood() ;
+			}
 			moveBody(headX, headY);			/// calls differents functions 
-			dyingIntoWall();
+			if(barriers == 1){				/// checks for user input on whether they want wall barriers or not
+				dyingIntoWall();
+			}else if(barriers == 2){
+				throughWall();
+			}
 			eaten();
 		}, getSpeed);  				//// goes every after getspeed milliseconds, this is set by the user in the settings or by default 100 ms
 	}
@@ -274,10 +285,10 @@ $(function () { /// had it in this because its good practice
      	var $food = $('.food');					////creates food in random positions as long as its a mutliple of 20 otherwise the head will never touch it as the head only moves by 20,
      	foodcoordinates = {
      		x: (Math.floor(Math.random()*29)*20) + screenX,	//// spawns food  anywhere, as long as its every 20 from 0 to 580 on the x axis, anymore off phone screeen, less is the same
-        	y: (Math.floor((Math.random()*18)+2)*20) + screenY //// same as above from 40 to 400 every 20. anymore it goes off the phone screen, less into scoreboard
+        	y: (Math.floor((Math.random()*17)+3)*20) + screenY //// same as above from 40 to 400 every 20. anymore it goes off the phone screen, less into scoreboard
      	}
 
-		var $foodXY = $food.offset({			///sets the foods location on the screen
+		var foodXY = $food.offset({			///sets the foods location on the screen
 			left : foodcoordinates.x ,
 			top : foodcoordinates.y
 		});
@@ -329,7 +340,7 @@ $(function () { /// had it in this because its good practice
 
 
 			foodcoordinates.x = (Math.floor(Math.random()*29)*20) + screenX;
-      		foodcoordinates.y = (Math.floor((Math.random()*18)+2)*20) + screenY;
+      		foodcoordinates.y = (Math.floor((Math.random()*17)+3)*20) + screenY;
       		var $foodXY = $food.offset({
 				left : foodcoordinates.x ,			///if a piece of food is eaten the food relocates itself to random coordinates
 				top : foodcoordinates.y 
@@ -346,8 +357,6 @@ $(function () { /// had it in this because its good practice
 				backgroundColor: 'black' //// this generates just a plain black snake
 				});
 			}
-
-			
    			var snake1x = snakeX; /// not sure to be honest, kinda scared to delete it
       		var snake1y = snakeY;
     	}
@@ -355,9 +364,62 @@ $(function () { /// had it in this because its good practice
 	function dyingIntoWall() {
 		var headX = $head.eq(0).position().left ;
 		var headY = $head.eq(0).position().top ; ///checks to see if you goof the screen and if user did, the snake dies
-		if(headX <= -20 || headY >= 420 || headY <= 0 || headX >= 600){
+		if(headX <= -20 || headY >= 420 || headY <= 20 || headX >= 600){
 			dead();
 		}	
+	}
+	function throughWall(){
+		var headX = $head.eq(0).position().left ;
+		var headY = $head.eq(0).position().top ; ///checks to see if you go off the screen and if user did, the moves you to the other side
+		if(headX <= -20){
+			$head.eq(0).offset({left: (603+screenX)});			/// 710
+		}else if( headX >= 600){								
+			$head.eq(0).offset({left : (screenX-17)});			/// 90
+		}else if(headY <= 20){
+			$head.eq(0).offset({top : (423+screenY)});			///	623
+		}else if(headY >= 420){
+			$head.eq(0).offset({top:(screenY+23)});				///  223
+		}
+
+	} //107 and 200 are screeenX and screen Y
+	function createFastFood() {
+
+		fastFoodCoordinates = {
+	 		x: (Math.floor(Math.random()*29)*20) + screenX,
+  			y: (Math.floor((Math.random()*17)+3)*20) + screenY
+  		}
+		$fastFood.css({
+  			background: getRandomColor
+  		});  		
+  		var randomTime = (Math.floor((Math.random()*30)+1)*1000);
+  		var oldSpeed = getSpeed;
+  		var counter = 0;
+  		console.log(randomTime);
+  		console.log(fastFoodCoordinates.x + ' and ' + fastFoodCoordinates.y);
+  		setTimeout(function() {
+				
+			var $fastFoodXY = $fastFood.offset({
+				left : fastFoodCoordinates.x ,			///if a piece of food is eaten the food relocates itself to random coordinates
+				top : fastFoodCoordinates.y 
+			});
+
+		}, randomTime);
+	}
+	function fastFood() {
+		
+	 	if (fastFoodCoordinates.x === snakeX && fastFoodCoordinates.y === snakeY || fastFoodCoordinates.y === snakeY && fastFoodCoordinates.x ===snakeX) {
+  			var foodInterval = setInterval(function(){
+  				score++;
+  				counter++;
+  				getSpeed = 30;
+  				console.log(counter);
+  				
+			},1000);
+			if(counter == 10){
+				clearInterval(foodInterval);
+			}
+			getSpeed = oldSpeed; 
+		}
 	}
 	
 	var randomColor = getRandomColor();
@@ -500,24 +562,35 @@ $(function () { /// had it in this because its good practice
 	 		menu();
 	 	});	
 		buttonColor($backToMenuS);
+
+
+		buttonColor($wallBarriersOn);
+		$wallBarriersOn.click(function(event){
+	 		barriers = 1;
+			$wallBarriersOn.addClass('opacity');//// when you click a colour button it hides it and shows the other button so you know which button you are on and which you can click same for below
+			$wallBarriersOff.removeClass('opacity');
+		});
+		buttonColor($wallBarriersOff);
+
+		$wallBarriersOff.click(function(event){
+	 		barriers = 2;
+			$wallBarriersOn.removeClass('opacity');
+			$wallBarriersOff.addClass('opacity');
+		});
+		
+		buttonColor($fastFoodButton);
+
+		$fastFoodButton.click(function(event){
+			if ($fastFoodButton.hasClass('opacity')){
+				fastFoodNumber = 0;
+				$fastFoodButton.removeClass('opacity');
+			}else{
+				fastFoodNumber = 1;
+				$fastFoodButton.addClass('opacity');
+			}
+		});
+
 	}
-	function settingsMore () {
-		visible($settingScreen2);
-
-
-		$backToMenuS2.click(function(event){
-	 		menu();
-	 	});	
-		buttonColor($backToMenuS2);
-
-
-	}
-
-
-
-
-
-
 	function credit () { ///// credit screen
 		visible($credits);
 		$backToMenuC.click(function(event){
@@ -548,6 +621,8 @@ $(function () { /// had it in this because its good practice
 			x.removeClass('visibility');   //// checks if x is visible if not gets rid of it
 		}
 	}
+	
+
 });
 
 

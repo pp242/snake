@@ -27,11 +27,11 @@
 
 
 	<div id='background' width='1500' height='1400'>
-		<div id = 'phone'>
-		<img src="images/style.jpeg" width="800" height="1400" align="middle">		<!-- this is the phone image -->
+		<div>
+		<img src="images/style.jpeg" width="800" height="1400" align="middle" class="phone">		<!-- this is the phone image -->
 			<div id = 'screen'> <!-- the first background screen, not linked to the class background screen because i wanted it smaller -->
 				<div id = 'head' class="snake-element" ></div>.  <!-- got rid of class='body' -->
-				
+				<div id="fastFood" class='fastFood'></div>
 				<!-- <div class = 'nextThing'></div> -->
 				<div class = 'food'></div> <!-- the div for the food -->
 				<div id='score'>s c o r e : 0 . . . . . . . h i g h s c o r e : 0</div>   <!-- the score div so we can read the score -->
@@ -42,7 +42,6 @@
 				<div id='instructionsButton' class="menuButton">Instructions</div> <!-- takes you to the instructions -->
 				<div id="leaderboardButton" class="menuButton">Leaderboard</div> <!-- takes you to the leaderboard -->
 				<div id='settings' class="menuButton">Settings</div> <!-- takes you to settings screen -->
-				<div id='settings2' class="menuButton">Settings 2</div> <!-- takes you to settings screen -->
 				<div id='creditsButton' class="menuButton">Credits</div> <!-- takes you to credit screen -->
 			</div>
 			<div id='deadScreen' class='backgroundScreen'> <!-- background for dead screen -->
@@ -64,7 +63,6 @@
 				<div id='instructionsTitle' class='title'>Instructions</div>
 				<div id='actualInstructions'>You have been sent back to the year 1997, where netflix does not exist and donald trump is not president. The only way now to kill time is to play on your brand new nokia 3310 and the original mobile game: SNAKE. The aim of the game is to get your snake to eat as much food as you can without the snake hitting any of the walls or itself. Everytime you eat you get bigger. To play all you have to go is press the direction arrows to direct the snake. </div> <!-- text for the instructions --> 
 				<div id='backToMenuI' class='menuButton'> Back to the Menu</div><!-- goes to menu -->
-				
 			</div>
 			<div id='settingScreen' class="backgroundScreen" > <!-- background for setting page -->
 				<div id="blackSnake" class="button">Classic Snake</div>
@@ -73,16 +71,10 @@
 				<div id="normal" class="button">Normal</div>
 				<div id="fast" class="button">Fast</div>
 				<div id="insane" class="button">Insane</div>
-				<div id="backToMenuS" class="menuButton">Back to Menu</div><!-- goes to menu -->
-			</div>
-			<div id='settingScreen2' class="backgroundScreen" > <!-- background for setting page -->
 				<div id="wallBarriersOn" class="button">Original Snake</div>
-				<div id="wallsBarriersOff" class="button">Snake 2</div>  <!-- the buttons for the different task that they have the id for -->
-				<div id="slow" class="button">Slow</div>
-				<div id="normal" class="button">Normal</div>
-				<div id="fast" class="button">Fast</div>
-				<div id="insane" class="button">Insane</div>
-				<div id="backToMenuS2" class="menuButton">Back to Menu</div><!-- goes to menu -->
+				<div id="wallBarriersOff" class="button">Snake 2</div>  <!-- the buttons for the different task that they have the id for -->
+				<div id='fastFoodButton' class='button'> Fast Food</div>
+				<div id="backToMenuS" class="menuButton">Back to Menu</div><!-- goes to menu -->
 			</div>
 			<div id="credits" class="backgroundScreen"> <!-- background for the crdits page -->
 				<div id='creditsTitle' class="title"> Credits</div> <!-- title -->
