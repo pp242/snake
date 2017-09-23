@@ -1,5 +1,5 @@
 $(function () { /// had it in this because its good practice
-
+ 
 	
 	var $menu = $('#menu')
 	var $head = $('#head');
@@ -14,6 +14,7 @@ $(function () { /// had it in this because its good practice
 	var $leaderboardButton = $('#leaderboardButton');
 	var $creditsButton = $('#creditsButton');
 	var $settings = $('#settings');
+	var $settings2 = $('#settings2');
 	var $menuButton = $('#menuButton');
 	var $result = $('#result');
 	var $leaderboard = $('#leaderboard');
@@ -40,6 +41,8 @@ $(function () { /// had it in this because its good practice
 	var $slow = $('#slow');
 	var $credits = $('#credits');
 	var $backToMenuC = $('#backToMenuC');
+	var $backToMenuS2 = $("#backToMenuS2")
+	var $settingScreen2 = $('#settingScreen2')
 	var $backgroundMusic = $('.backgroundMusic');
 	var $dieMusic = $('.dieMusic');
 	var $dieBackground = $('.dieBackground');
@@ -63,8 +66,8 @@ $(function () { /// had it in this because its good practice
 	clearInterval(movement);
 	
 
-	$rainbowSnake.addClass('visibility');			//for the settings it hides the buttons that are currently pressed so you know what the current settings are
-	$normal.addClass('visibility');
+	$rainbowSnake.addClass('opacity');			//for the settings it hides the buttons that are currently pressed so you know what the current settings are
+	$normal.addClass('opacity');
 	// $dieMusic.pause();
 	// $dieBackground.pause();
 	//$food.pause();
@@ -80,6 +83,7 @@ $(function () { /// had it in this because its good practice
 		$leaderboard.addClass('visibility');
 		$deadScreen.addClass('visibility');
 		$credits.addClass('visibility');			//this hide the screens that we are not on currently
+		$settingScreen2.addClass('visibility');
 		//$dieBackground.pause();
 		score = 0;   //redeclare score equals zero so that the score get deleted when you die
 		visible($menu)		//// checks if menu is visible if not gets rid of it
@@ -106,6 +110,12 @@ $(function () { /// had it in this because its good practice
 			settings();						/// takes to setting screen
 		 	$menu.addClass('visibility')
 		});
+		buttonColor($settings2);
+		$settings2.click(function(event){
+			settingsMore();						/// takes to setting screen 2
+		 	$menu.addClass('visibility')
+		});
+
 		buttonColor($settings);
 		$creditsButton.click(function(event){
 		 	$menu.addClass('visibility');
@@ -422,66 +432,66 @@ $(function () { /// had it in this because its good practice
 
 		$blackSnake.click(function(event){
 	 		getColour = 2;
-			$blackSnake.addClass('visibility');//// when you click a colour button it hides it and shows the other button so you know which button you are on and which you can click same for below
-			$rainbowSnake.removeClass('visibility');
+			$blackSnake.addClass('opacity');//// when you click a colour button it hides it and shows the other button so you know which button you are on and which you can click same for below
+			$rainbowSnake.removeClass('opacity');
 		});
 		buttonColor($blackSnake);
 
 		$rainbowSnake.click(function(event){
 	 		getColour = 1;
-			$blackSnake.removeClass('visibility');
-			$rainbowSnake.addClass('visibility');
+			$blackSnake.removeClass('opacity');
+			$rainbowSnake.addClass('opacity');
 		});
 
 		buttonColor($rainbowSnake);
 		$fast.click(function(event){ ///// when you click a speed button it hides it and shows the other buttons so you know which button youn are on and which you can click same for the same functions below, slight change with the adding and removing of classes for each
 	 		getSpeed = 70;
-	 		$fast.addClass('visibility');
-	 		if($normal.hasClass('visibility')){
-	 			$normal.removeClass('visibility');
-	 		}else if($slow.hasClass('visibility')){
-	 			$slow.removeClass('visibility');
-	 		}else if($insane.hasClass('visibility')){
-	 			$insane.removeClass('visibility');
+	 		$fast.addClass('opacity');
+	 		if($normal.hasClass('opacity')){
+	 			$normal.removeClass('opacity');
+	 		}else if($slow.hasClass('opacity')){
+	 			$slow.removeClass('opacity');
+	 		}else if($insane.hasClass('opacity')){
+	 			$insane.removeClass('opacity');
 	 		}
 	 	});	
 		buttonColor($fast);
 
 	 	$normal.click(function(event){
 	 		getSpeed = 100;
-	 		$normal.addClass('visibility');
-	 		if($fast.hasClass('visibility')){
-	 			$fast.removeClass('visibility');
-	 		}else if($slow.hasClass('visibility')){
-	 			$slow.removeClass('visibility');
-	 		}else if($insane.hasClass('visibility')){
-	 			$insane.removeClass('visibility');
+	 		$normal.addClass('opacity');
+	 		if($fast.hasClass('opacity')){
+	 			$fast.removeClass('opacity');
+	 		}else if($slow.hasClass('opacity')){
+	 			$slow.removeClass('opacity');
+	 		}else if($insane.hasClass('opacity')){
+	 			$insane.removeClass('opacity');
 	 		}
 	 	});	
 		buttonColor($normal);
 
 	 	$slow.click(function(event){
 	 		getSpeed = 150;
-	 		$slow.addClass('visibility');
-	 		if($fast.hasClass('visibility')){
-	 			$fast.removeClass('visibility');
-	 		}else if($normal.hasClass('visibility')){
-	 			$normal.removeClass('visibility');
-	 		}else if($insane.hasClass('visibility')){
-	 			$insane.removeClass('visibility');
+	 		$slow.addClass('opacity');
+	 		if($fast.hasClass('opacity')){
+	 			$fast.removeClass('opacity');
+	 		}else if($normal.hasClass('opacity')){
+	 			$normal.removeClass('opacity');
+	 		}else if($insane.hasClass('opacity')){
+	 			$insane.removeClass('opacity');
 	 		}
 	 	});	
 		buttonColor($slow);
 
 	 	$insane.click(function(event){
 	 		getSpeed = 40;
-	 		$insane.addClass('visibility');
-	 		if($fast.hasClass('visibility')){
-	 			$fast.removeClass('visibility');
-	 		}else if($normal.hasClass('visibility')){
-	 			$normal.removeClass('visibility');
-	 		}else if($slow.hasClass('visibility')){
-	 			$slow.removeClass('visibility');
+	 		$insane.addClass('opacity');
+	 		if($fast.hasClass('opacity')){
+	 			$fast.removeClass('opacity');
+	 		}else if($normal.hasClass('opacity')){
+	 			$normal.removeClass('opacity');
+	 		}else if($slow.hasClass('opacity')){
+	 			$slow.removeClass('opacity');
 	 		}
 	 	});	
 		buttonColor($insane);
@@ -491,6 +501,23 @@ $(function () { /// had it in this because its good practice
 	 	});	
 		buttonColor($backToMenuS);
 	}
+	function settingsMore () {
+		visible($settingScreen2);
+
+
+		$backToMenuS2.click(function(event){
+	 		menu();
+	 	});	
+		buttonColor($backToMenuS2);
+
+
+	}
+
+
+
+
+
+
 	function credit () { ///// credit screen
 		visible($credits);
 		$backToMenuC.click(function(event){
