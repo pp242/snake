@@ -47,11 +47,14 @@ $(function () { /// had it in this because its good practice
 	var $backgroundMusic = $('.backgroundMusic');
 	var $dieMusic = $('.dieMusic');
 	var $dieBackground = $('.dieBackground');
+	var $normalKeys = $('#normalKeys');
+	var $backwardsKeys = $('#backwardsKeys');
 	var getSpeed = 100;					//declaration for the speed of the intervals of each movement of the head of the snake
 	var getColour = 1;					//declaration for the colour of the snakes body, 1 for rainbow, 2 black	
 	var score = 0;						/// gives a score of zero before game starts
 	var barriers = 1;
 	var fastFoodNumber = 0;
+	var keyVersion = 0;
 	var movement = setInterval(function() {});			///set the variable
 	var foodcoordinates = {							/// declare the foodcoordinates so they start from somewhere
 		x : 0 ,
@@ -76,6 +79,7 @@ $(function () { /// had it in this because its good practice
 	$rainbowSnake.addClass('opacity');			//for the settings it hides the buttons that are currently pressed so you know what the current settings are
 	$normal.addClass('opacity');
 	$wallBarriersOn.addClass('opacity');
+	$normalKeys.addClass('opacity');
 	// $dieMusic.pause();
 	// $dieBackground.pause();
 	//$food.pause();
@@ -196,26 +200,12 @@ $(function () { /// had it in this because its good practice
 	function move(direction) {
 
 		movement = setInterval(function(){ ///sets interval, this is every iteration of movement, this saves the direction of movement and replays it until direction value is change(someone clicks the button or key)
-
-			if(direction == 38)//up 38						if the direction is up from the button oor key input it moves the head up
-		    {
-		      	$head.eq(0).css({top: "-=20px"},"fast");
-		      	wrongDirection = 40;						
-		    }else if(direction == 40)//down 40 				if the direction is down from the button oor key input it moves the head down etc.. same for 2 below
-		    {
-		      	$head.eq(0).css({top: "+=20px"},"fast");	/// this moves it below, the ,fast is not required needs deleting
-		      	wrongDirection = 38;						/// gives what number what would be the wrong direction so we can use it to stop going back on yourself
-		    }else if(direction == 37)//left 37
-		    {
-		      	$head.eq(0).css({left: "-=20px"},"fast");
-		      	wrongDirection = 39;
-		    }else if(direction == 39)//right 39. 
-		    {
-		      	$head.eq(0).css({left: "+=20px"},"fast");
-		      	wrongDirection = 37;
-		    }else if(direction == 32){
-		    	$head.css.eq(0)({left: "+=0px",top: "+=0px"},"fast");
-		    } 
+			
+			if(keyVersion == 0){
+				normalKeys();
+			}else if(keyVersion == 1){
+				backwardsKeys();
+			}
 		    var headX = $head.eq(0).position().left ;
 			var headY = $head.eq(0).position().top ;		///gives coordinates of the position of the head to the screen div
 			if (fastFoodNumber == 1) {
@@ -272,6 +262,52 @@ $(function () { /// had it in this because its good practice
 			});
 		}
 	}
+	function normalKeys(){
+		if(direction == 38)//up 38						if the direction is up from the button oor key input it moves the head up
+	    {
+	      	$head.eq(0).css({top: "-=20px"});
+	      	wrongDirection = 40;						
+	    }else if(direction == 40)//down 40 				if the direction is down from the button oor key input it moves the head down etc.. same for 2 below
+	    {
+	      	$head.eq(0).css({top: "+=20px"});	/// this moves it below, the ,fast is not required needs deleting
+	      	wrongDirection = 38;						/// gives what number what would be the wrong direction so we can use it to stop going back on yourself
+	    }else if(direction == 37)//left 37
+	    {
+	      	$head.eq(0).css({left: "-=20px"});
+	      	wrongDirection = 39;
+	    }else if(direction == 39)//right 39. 
+	    {
+	      	$head.eq(0).css({left: "+=20px"});
+	      	wrongDirection = 37;
+	    }else if(direction == 32){
+	    	$head.css.eq(0)({left: "+=0px",top: "+=0px"});
+	    } 
+	}
+
+	function backwardsKeys(){
+		if(direction == 38)//up 38						if the direction is up from the button oor key input it moves the head up
+	    {
+	      	$head.eq(0).css({top: "+=20px"});
+	      	wrongDirection = 40;						
+	    }else if(direction == 40)//down 40 				if the direction is down from the button oor key input it moves the head down etc.. same for 2 below
+	    {
+	      	$head.eq(0).css({top: "-=20px"});	/// this moves it below, the ,fast is not required needs deleting
+	      	wrongDirection = 38;						/// gives what number what would be the wrong direction so we can use it to stop going back on yourself
+	    }else if(direction == 37)//left 37
+	    {
+	      	$head.eq(0).css({left: "+=20px"});
+	      	wrongDirection = 39;
+	    }else if(direction == 39)//right 39. 
+	    {
+	      	$head.eq(0).css({left: "-=20px"});
+	      	wrongDirection = 37;
+	    }else if(direction == 32){
+	    	$head.css.eq(0)({left: "+=0px",top: "+=0px"});
+	    } 
+	}
+
+
+
 	function dead () {					//when you die this is called
 		deadScreen();					/// different screen
 		$head.eq(0).css({top: '200px', left: '200px'});  		/// goes to middle of screen to start again
@@ -391,10 +427,10 @@ $(function () { /// had it in this because its good practice
 		$fastFood.css({
   			background: getRandomColor
   		});  		
-  		var randomTime = (Math.floor((Math.random()*30)+1)*1000);
+  		//var randomTime = (Math.floor((Math.random()*30)+1)*1000);
   		var oldSpeed = getSpeed;
   		var counter = 0;
-  		console.log(randomTime);
+  		//console.log(randomTime);
   		console.log(fastFoodCoordinates.x + ' and ' + fastFoodCoordinates.y);
   		setTimeout(function() {
 				
@@ -403,7 +439,7 @@ $(function () { /// had it in this because its good practice
 				top : fastFoodCoordinates.y 
 			});
 
-		}, randomTime);
+		}, 20000);
 	}
 	function fastFood() {
 		
@@ -413,10 +449,11 @@ $(function () { /// had it in this because its good practice
   				counter++;
   				getSpeed = 30;
   				console.log(counter);
-  				
+  				$head.eq(0).after($newBodyElement);
 			},1000);
 			if(counter == 10){
 				clearInterval(foodInterval);
+				counter = 0;
 			}
 			getSpeed = oldSpeed; 
 		}
@@ -589,6 +626,22 @@ $(function () { /// had it in this because its good practice
 				$fastFoodButton.addClass('opacity');
 			}
 		});
+
+		buttonColor($backwardsKeys);
+		$backwardsKeys.click(function(event){
+	 		keyVersion = 1;
+			$backwardsKeys.addClass('opacity');//// when you click a colour button it hides it and shows the other button so you know which button you are on and which you can click same for below
+			$normalKeys.removeClass('opacity');
+		});
+		buttonColor($normalKeys);
+
+		$normalKeys.click(function(event){
+	 		keyVersion = 0;
+			$backwardsKeys.removeClass('opacity');
+			$normalKeys.addClass('opacity');
+		});
+
+
 
 	}
 	function credit () { ///// credit screen
