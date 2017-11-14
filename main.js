@@ -674,8 +674,6 @@ $(function () { /// had it in this because its good practice
 			x.removeClass('visibility');   //// checks if x is visible if not gets rid of it
 		}
 	}
-	
-
 });
 
 
